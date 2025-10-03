@@ -1,37 +1,58 @@
 
 // "use client";
-// import React, { useState, useEffect, useRef } from "react";
+// import React, { useState, useEffect, useRef, useMemo } from "react";
 // import Image from "next/image";
 // import { Button } from "@/components/ui/button";
 
 // export default function ProductTab() {
 //   const [currentTab, setCurrentTab] = useState<string>("Stablecoin infrastructure");
 
-//   const tabsName: string[] = [
-//     "Stablecoin infrastructure",
-//     "Onramp / offramp",
-//     "Digital assets as a Service",
-//     "Payments",
-//     "OTC",
-//   ];
+//   // ✅ Memoize so it doesn’t recreate every render
+//   const tabsName = useMemo(
+//     () => [
+//       "Stablecoin infrastructure",
+//       "Onramp / offramp",
+//       "Digital assets as a Service",
+//       "Payments",
+//       "OTC",
+//     ],
+//     []
+//   );
 
 //   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+//   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-//   // Sync active tab with scroll
+//   // ✅ Sync active tab with scroll
 //   useEffect(() => {
 //     const handleScroll = () => {
 //       sectionRefs.current.forEach((section, index) => {
 //         if (section) {
 //           const rect = section.getBoundingClientRect();
-//           if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+//           if (
+//             rect.top <= window.innerHeight / 2 &&
+//             rect.bottom >= window.innerHeight / 2
+//           ) {
 //             setCurrentTab(tabsName[index]);
 //           }
 //         }
 //       });
 //     };
+
 //     window.addEventListener("scroll", handleScroll);
 //     return () => window.removeEventListener("scroll", handleScroll);
 //   }, [tabsName]);
+
+//   // ✅ Auto scroll tab button into view when active
+//   useEffect(() => {
+//     const activeIndex = tabsName.indexOf(currentTab);
+//     if (activeIndex !== -1 && tabRefs.current[activeIndex]) {
+//       tabRefs.current[activeIndex]?.scrollIntoView({
+//         behavior: "smooth",
+//         block: "nearest",
+//         inline: "nearest",
+//       });
+//     }
+//   }, [currentTab, tabsName]);
 
 //   const content: Record<
 //     string,
@@ -132,7 +153,7 @@
 //               <div
 //                 className={`space-y-5 ${
 //                   isEven ? "md:order-1" : "md:order-2"
-//                 } order-1`} // force content first on mobile
+//                 } order-1`}
 //               >
 //                 <h3 className="primary-color font-semibold text-sm sm:text-base md:text-lg uppercase">
 //                   {content[tab].sub}
@@ -143,7 +164,10 @@
 //                 <p className="paragraph text-sm sm:text-base md:text-lg max-w-md">
 //                   {content[tab].paragraph}
 //                 </p>
-//                 <Button showArrow className="mt-4 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base">
+//                 <Button
+//                   showArrow
+//                   className="mt-4 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base"
+//                 >
 //                   Explore now
 //                 </Button>
 //               </div>
@@ -152,7 +176,7 @@
 //               <div
 //                 className={`flex justify-center ${
 //                   isEven ? "md:order-2" : "md:order-1"
-//                 } order-2`} // always below content on mobile
+//                 } order-2`}
 //               >
 //                 {content[tab].image}
 //               </div>
@@ -160,60 +184,43 @@
 //           );
 //         })}
 
-       
-      
-
-// {/* Sticky Bottom Tab Bar */}
-// <div className="sticky bottom-0 bg-white/90 backdrop-blur-md shadow-md border-t border-gray-200">
-//   <ul
-//     className="
-//       flex flex-wrap justify-center md:justify-around gap-2 sm:gap-3 px-2 py-2
-//       max-h-[100px] overflow-y-auto sm:overflow-visible
-//     "
-//   >
-//     {tabsName.map((tab, index) => {
-//       const isActive = currentTab === tab;
-//       const tabRef = React.createRef<HTMLButtonElement>();
-
-//       // Auto scroll into view when active
-//       useEffect(() => {
-//         if (isActive && tabRef.current) {
-//           tabRef.current.scrollIntoView({
-//             behavior: "smooth",
-//             block: "nearest",
-//             inline: "nearest",
-//           });
-//         }
-//       }, [isActive]);
-
-//       return (
-//         <li key={tab} className="flex">
-//           <button
-//             ref={tabRef}
-//             onClick={() => {
-//               setCurrentTab(tab);
-//               sectionRefs.current[index]?.scrollIntoView({ behavior: "smooth" });
-//             }}
-//             className={`px-3 sm:px-5 py-2 
-//               text-xs sm:text-base font-medium 
-//               rounded-sm transition-all duration-300 
-//               truncate sm:whitespace-normal sm:truncate-none 
-//               ${
-//                 isActive
-//                   ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-md"
-//                   : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-black"
-//               }`}
+//         {/* Sticky Bottom Tab Bar */}
+//         <div className="sticky bottom-0 bg-white/90 backdrop-blur-md shadow-md border-t border-gray-200">
+//           <ul
+//             className="
+//               flex flex-wrap justify-center md:justify-around gap-2 sm:gap-3 px-2 py-2
+//               max-h-[100px] overflow-y-auto sm:overflow-visible
+//             "
 //           >
-//             {tab}
-//           </button>
-//         </li>
-//       );
-//     })}
-//   </ul>
-// </div>
-
-
-
+//             {tabsName.map((tab, index) => {
+//               const isActive = currentTab === tab;
+//               return (
+//                 <li key={tab} className="flex">
+//                   <button
+//                     ref={(el) => {(tabRefs.current[index] = el)}}
+//                     onClick={() => {
+//                       setCurrentTab(tab);
+//                       sectionRefs.current[index]?.scrollIntoView({
+//                         behavior: "smooth",
+//                       });
+//                     }}
+//                     className={`px-3 sm:px-5 py-2 
+//                       text-xs sm:text-base font-medium 
+//                       rounded-sm transition-all duration-300 
+//                       truncate sm:whitespace-normal sm:truncate-none 
+//                       ${
+//                         isActive
+//                           ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-md"
+//                           : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-black"
+//                       }`}
+//                   >
+//                     {tab}
+//                   </button>
+//                 </li>
+//               );
+//             })}
+//           </ul>
+//         </div>
 //       </div>
 //     </div>
 //   );
@@ -226,7 +233,7 @@ import { Button } from "@/components/ui/button";
 export default function ProductTab() {
   const [currentTab, setCurrentTab] = useState<string>("Stablecoin infrastructure");
 
-  // ✅ Memoize so it doesn’t recreate every render
+  // ✅ Keep tab names stable
   const tabsName = useMemo(
     () => [
       "Stablecoin infrastructure",
@@ -240,6 +247,12 @@ export default function ProductTab() {
 
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const didMount = useRef(false); // ✅ track first render
+
+  // ✅ Always scroll to top on page load (only once)
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // ✅ Sync active tab with scroll
   useEffect(() => {
@@ -261,8 +274,13 @@ export default function ProductTab() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [tabsName]);
 
-  // ✅ Auto scroll tab button into view when active
+  // ✅ Auto scroll tab button into view (but skip on initial mount)
   useEffect(() => {
+    if (!didMount.current) {
+      didMount.current = true;
+      return; // skip on first render
+    }
+
     const activeIndex = tabsName.indexOf(currentTab);
     if (activeIndex !== -1 && tabRefs.current[activeIndex]) {
       tabRefs.current[activeIndex]?.scrollIntoView({
@@ -416,7 +434,9 @@ export default function ProductTab() {
               return (
                 <li key={tab} className="flex">
                   <button
-                    ref={(el) => {(tabRefs.current[index] = el)}}
+                    ref={(el) => {
+                      tabRefs.current[index] = el;
+                    }}
                     onClick={() => {
                       setCurrentTab(tab);
                       sectionRefs.current[index]?.scrollIntoView({
@@ -444,3 +464,4 @@ export default function ProductTab() {
     </div>
   );
 }
+

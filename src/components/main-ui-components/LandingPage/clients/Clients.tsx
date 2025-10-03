@@ -1,7 +1,7 @@
 import React from 'react'
 import TypewriterHeading from './TypeWriterHeading'
-import { CiBank } from 'react-icons/ci';
-import { BadgeDollarSign, ChartCandlestick, ChartNoAxesCombined, Gamepad, Gamepad2, Landmark, MapPinHouse } from 'lucide-react';
+
+import { BadgeDollarSign, ChartCandlestick, ChartNoAxesCombined,  Gamepad2, Landmark, MapPinHouse } from 'lucide-react';
 
 
 

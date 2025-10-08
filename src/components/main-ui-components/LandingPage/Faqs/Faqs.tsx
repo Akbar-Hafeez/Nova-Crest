@@ -1,4 +1,4 @@
-import Accordion from "./Accordion";
+import Accordion from "../../../reusablesComponents/Accordion/Accordion";
 
 
 export default function FaqPage() {

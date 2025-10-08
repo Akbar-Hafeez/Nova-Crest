@@ -8,9 +8,10 @@ type FaqItem = {
 
 type AccordionProps = {
   items: FaqItem[][];
+  heading?: string; // optional heading
 };
 
-const Accordion: React.FC<AccordionProps> = ({ items }) => {
+const Accordion: React.FC<AccordionProps> = ({ items, heading = "What Our Clients Ask Most" }) => {
   const [openIndex, setOpenIndex] = useState<string | null>("0"); // first open by default
 
   const toggleAccordion = (index: string) => {
@@ -18,9 +19,16 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
   };
 
   return (
-    <div className=" md:mx-16 md:px-6 py-12">
-      <div className="grid  gap-6">
-        <div><h1 className="main-heading md:mb-10 flex justify-center text-center">What Our Clients Ask Most</h1></div>
+    <div className="md:mx-16 md:px-6 py-12">
+      <div className="grid gap-6">
+        {/* Section Heading */}
+        <div>
+          <h1 className="main-heading md:mb-10 flex justify-center text-center">
+            {heading}
+          </h1>
+        </div>
+
+        {/* Accordion Columns */}
         {items.map((col, colIndex) => (
           <div key={colIndex} className="space-y-6">
             {col.map((item, idx) => {
@@ -31,19 +39,20 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
                 <div
                   key={indexKey}
                   className="bg-white shadow-md rounded-lg transition-all"
-                //   role="accordion"
                 >
                   <button
                     type="button"
                     onClick={() => toggleAccordion(indexKey)}
-                    className="accordion-button cursor-pointer w-full text-lg font-medium text-left p-6 text-slate-900  flex items-center"
+                    className="accordion-button cursor-pointer w-full text-lg font-medium text-left p-6 text-slate-900 flex items-center"
                   >
                     <span className="mr-4 text-md md:text-xl">{item.question}</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 512 512"
                       className="w-[15px] h-[15px] fill-current ml-auto shrink-0 transition-transform duration-300"
-                      style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                      style={{
+                        transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                      }}
                     >
                       <path d="M40.421 215.579H471.579C493.868 215.579 512 233.711 512 256s-18.132 40.421-40.421 40.421H40.421C18.132 296.421 0 278.289 0 256s18.132-40.421 40.421-40.421z" />
                       <path
@@ -52,6 +61,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
                       />
                     </svg>
                   </button>
+
                   <div
                     className={`accordion-content overflow-hidden transition-all duration-300 ease-in-out ${
                       isOpen ? "max-h-96" : "max-h-0"

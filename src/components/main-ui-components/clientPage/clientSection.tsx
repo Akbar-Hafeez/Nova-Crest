@@ -1,0 +1,200 @@
+"use client";
+
+import React, { JSX, useEffect } from "react";
+import GradientBackground from "@/components/reusablesComponents/GradientBackground/GradientBackground";
+import {
+  FaChartLine,
+  FaServer,
+  FaAtom,
+  FaCode,
+  FaRocket,
+  FaExchangeAlt,
+    FaShoppingCart,
+} from "react-icons/fa";
+import { FaLandmark } from "react-icons/fa6";
+import { Check } from "lucide-react";
+
+type ClientCard = {
+  id: string;
+  title: string;
+  subtitle: string;
+  bullets: string[];
+  icon: React.ReactNode;
+};
+
+const clients: ClientCard[] = [
+  {
+    id: "financial",
+    title: "Financial Institutions",
+    subtitle: "Compliance-first digital infrastructure",
+    bullets: [
+      "Enterprise-grade security & audit",
+      "Custom KYC / AML pipelines",
+      "Core banking connectors",
+      "Reliable SLA-driven deployments",
+    ],
+    icon: <FaLandmark className="text-7xl md:text-8xl text-[#7f00ff]" />,
+  },
+   {
+    id: "ecommerce",
+    title: "E-Commerce Platforms",
+    subtitle: "Empowering digital payments and scalability",
+    bullets: [
+      "Seamless checkout and payment APIs",
+      "Fraud detection and dispute management",
+      "Multi-currency support and FX automation",
+      "Scalable backend for seasonal traffic spikes",
+    ],
+    icon: <FaShoppingCart className="text-7xl md:text-8xl text-[#7f00ff]" />,
+  },
+  {
+    id: "trading",
+    title: "Trading Firms",
+    subtitle: "Low-latency execution & risk tools",
+    bullets: [
+      "Ultra-low latency order routing",
+      "Algo/backtesting infrastructure",
+      "Real-time P&L and risk dashboards",
+      "Custom FIX & market adapters",
+    ],
+    icon: <FaChartLine className="text-7xl md:text-8xl text-[#7f00ff]" />,
+  },
+  {
+    id: "fintech",
+    title: "Fintechs & Exchanges",
+    subtitle: "Scalable payments & settlement",
+    bullets: [
+      "PCI & regulatory-ready integrations",
+      "Scalable microservices architecture",
+      "Real-time reconciliation and reporting",
+      "White-label embeddable SDKs",
+    ],
+    icon: <FaServer className="text-7xl md:text-8xl text-[#7f00ff]" />,
+  },
+  {
+    id: "web3",
+    title: "Web3 Companies",
+    subtitle: "Blockchain-ready tooling & UX",
+    bullets: [
+      "Smart contract integration & audits",
+      "Wallet management & custody UX",
+      "On-chain telemetry & analytics",
+      "Bridges, relayers and indexers",
+    ],
+    icon: <FaAtom className="text-7xl md:text-8xl text-[#7f00ff]" />,
+  },
+  {
+    id: "developers",
+    title: "Developers",
+    subtitle: "Build faster with robust APIs and SDKs",
+    bullets: [
+      "Comprehensive REST & WebSocket APIs",
+      "Developer-friendly sandbox environments",
+      "TypeScript and Python SDKs",
+      "Extensive documentation and guides",
+    ],
+    icon: <FaCode className="text-7xl md:text-8xl text-[#7f00ff]" />,
+  },
+  {
+    id: "startups",
+    title: "Startups",
+    subtitle: "Launch and scale financial products quickly",
+    bullets: [
+      "Ready-to-deploy financial modules",
+      "Flexible API-first architecture",
+      "Affordable, usage-based pricing",
+      "Support from fintech mentors and experts",
+    ],
+    icon: <FaRocket className="text-7xl md:text-8xl text-[#7f00ff]" />,
+  },
+  {
+    id: "currency",
+    title: "Currency Exchange Houses",
+    subtitle: "Secure and efficient FX infrastructure",
+    bullets: [
+      "Multi-currency wallet and ledger systems",
+      "Real-time exchange rate integrations",
+      "AML / KYC compliance tools",
+      "Cross-border transaction monitoring",
+    ],
+    icon: <FaExchangeAlt className="text-7xl md:text-8xl text-[#7f00ff]" />,
+  },
+];
+
+export default function ClientsSection(): JSX.Element {
+  // ✅ Scroll to section if URL has a hash (like #developers)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const hash = window.location.hash;
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 300); // slight delay for rendering
+        }
+      }
+    }
+  }, []);
+
+  return (
+    <section className="bg-white py-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        {/* Section Heading */}
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900">
+            Empowering Modern Financial & Web3 Innovators
+          </h2>
+          <p className="mt-4 text-lg text-color max-w-2xl mx-auto">
+            We partner with trading, fintech, and Web3 leaders to deliver
+            scalable, compliant, and high-performance digital infrastructure.
+          </p>
+        </div>
+
+        {/* Alternating Rows */}
+        <div className="space-y-20 lg:mx-20">
+          {clients.map((c, index) => {
+            const reverse = index % 2 !== 0;
+            return (
+              <div
+                id={c.id} // ✅ anchor target for navigation
+                key={c.id}
+                className={`flex flex-col md:flex-row items-center gap-12 scroll-mt-28 ${
+                  reverse ? "md:flex-row-reverse" : ""
+                }`}
+              >
+                {/* Text Content */}
+                <div className="flex-1">
+                  <h3 className="text-4xl font-bold text-color mb-3">
+                    {c.title}
+                  </h3>
+                  <p className="text-lg text-gray-600 mb-6">{c.subtitle}</p>
+
+                  <ul className="space-y-3 text-color">
+                    {c.bullets.map((b, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-base hover:text-[#7f00ff] transition-colors"
+                      >
+                        <span className="text-[#7f00ff] mt-1">
+                          <Check />
+                        </span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Icon / Image */}
+                <GradientBackground className="flex-1 h-[300px]">
+                  {c.icon}
+                </GradientBackground>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+

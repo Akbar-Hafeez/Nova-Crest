@@ -88,7 +88,7 @@ export default function DevSection() {
         {/* Left side */}
         <div className="mt-4 sm:mt-6 md:mt-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug sm:leading-tight mb-4">
-            Create Secure Digital Asset Solutions With Nova Crest APIs
+            Create Secure Digital Asset Solutions With NOVA Crest APIs
           </h2>
           <p className="text-base sm:text-lg text-gray-300 my-6 sm:my-8">
             Explore the Nova Crest platform to build with security and scale 

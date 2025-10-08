@@ -65,6 +65,34 @@ border-color:#7f00ff;
   @apply hover:text-[#7f00ff]/80
 }
 
+/* slider animation*/
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 80s linear infinite;
+}
+/* white glowing background gradient */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+/* Tailwind animations (add to globals.css if missing) */
+ @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } } 
+ @keyframes fadeInItem { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } } .animate-fadeIn { animation: fadeIn 0.4s ease-out forwards; } 
+ .animate-fadeInItem { animation: fadeInItem 0.3s ease-out forwards; } 
 
 
 @theme inline {
@@ -176,9 +204,9 @@ border-color:#7f00ff;
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 ;
   }
   body {
-    @apply bg-background text-foreground mx-12;
+    @apply bg-background text-foreground mx-4 md:mx-8 lg:mx-10;
   }
 }

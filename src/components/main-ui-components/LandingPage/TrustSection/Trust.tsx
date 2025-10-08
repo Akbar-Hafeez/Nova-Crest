@@ -8,7 +8,7 @@ export default function Trust() {
       {/* Top Heading */}
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold ">
-          Trusted by innovators
+          Trusted by Innovators
         </h2>
         <p className="mt-2 text-color">
           Backed by leaders. Built for growth.
@@ -106,9 +106,9 @@ export default function Trust() {
         <Image src={'/TrustSection/adgm.png'} width={100} height={80} alt='adgm'/>
         <Image src={'/TrustSection/vara.png'} width={100} height={80} alt='adgm'/>
    
-         <Image src={'/TrustSection/masak.png'} width={40} height={40} alt='adgm'/>
-        <Image src={'/TrustSection/cbuae.png'}  width={40} height={40}   alt='adgm'/>
-        <Image src={'/TrustSection/fcis.png'} width={40} height={40} className='col-span-2' alt='adgm'/>
+         <Image src={'/TrustSection/masak.svg'} width={40} height={40} alt='adgm'/>
+        <Image src={'/TrustSection/cbuae.svg'}  width={40} height={40}   alt='adgm'/>
+        <Image src={'/TrustSection/fcis.svg'} width={40} height={40} className='col-span-2' alt='adgm'/>
         
         </div>
       

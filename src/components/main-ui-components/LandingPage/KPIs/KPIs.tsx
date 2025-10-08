@@ -37,7 +37,7 @@ export default function KPIs() {
             <span className="text-5xl md:text-6xl tracking-tight font-semibold">
               15+
             </span>
-            <p className="mt-6 font-medium text-xl">Countries</p>
+            <p className="mt-6 font-medium text-xl">Digital Assets</p>
             {/* <p className="mt-2 text-muted-foreground">
               A whopping 420+ ready-to-go desktop and mobile page examples.
             </p> */}

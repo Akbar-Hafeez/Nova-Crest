@@ -204,7 +204,7 @@ export default function Header() {
 
                   {"dropdownColumns" in item ? (
                     <div className="grid grid-cols-2 gap-3">
-                      {item.dropdownColumns.map((col, idx) => (
+                      {item.dropdownColumns?.map((col, idx) => (
                         <ul key={idx} className="flex flex-col gap-1">
                           {col.map((d, i) => (
                             <li
@@ -314,7 +314,7 @@ export default function Header() {
               {mobileDropdown === item.label && (
                 <div className="mt-2 animate-fadeIn flex flex-col gap-2">
                   {"dropdownColumns" in item
-                    ? item.dropdownColumns.flat().map((d, idx) => (
+                    ? item.dropdownColumns?.flat().map((d, idx) => (
                         <Link
                           key={idx}
                           href={d.href ?? "#"}

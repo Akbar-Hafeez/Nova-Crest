@@ -13,6 +13,7 @@ import {
   FaCloud,
 } from "react-icons/fa";
 
+
 export const productsData = [
   // 1 Stablecoin Infrastructure
   {
@@ -485,3 +486,247 @@ export const productReviews = {
     },
   ],
 };
+export const productDevData = {
+  // 🟣 Stablecoin Infrastructure
+  "stablecoin-infrastructure": {
+    heading: "Build Compliant Stablecoin Infrastructure with Nova Crest SDKs",
+    description:
+      "Issue, manage, and track reserve-backed stablecoins programmatically with complete transparency, AML-ready controls, and multi-chain deployment using the Nova Crest Stablecoin APIs.",
+    buttonText: "Explore Stablecoin API Docs",
+    codeSnippets: {
+      typescript: {
+        language: "typescript",
+        code: `import { NovaCrestStablecoin } from "@novacrest/ts-sdk";
+
+const client = new NovaCrestStablecoin({
+  apiKey: "api-key",
+  secretKey: "secret-key",
+  network: "mainnet"
+});
+
+// Issue a new stablecoin
+await client.issue({
+  symbol: "USDN",
+  reserveAsset: "USD",
+  supply: 1000000
+});
+
+// Track reserve proof
+const audit = await client.getReserveReport("USDN");
+console.log(audit.status);`,
+      },
+      python: {
+        language: "python",
+        code: `from novacrest_sdk import StablecoinClient
+
+client = StablecoinClient(api_key="api-key", secret_key="secret-key")
+
+# Issue a new stablecoin
+client.issue(symbol="USDN", reserve_asset="USD", supply=1_000_000)
+
+# Get transparency report
+report = client.get_reserve_report("USDN")
+print(report.status)`,
+      },
+      java: {
+        language: "java",
+        code: `import com.novacrest.sdk.StablecoinClient;
+
+StablecoinClient client = new StablecoinClient("api-key", "secret-key");
+
+// Issue a reserve-backed stablecoin
+client.issue("USDN", "USD", 1_000_000);
+
+// Fetch transparency audit
+client.getReserveReport("USDN");`,
+      },
+    },
+  },
+
+  // 🟢 OTC Infrastructure
+  otc: {
+    heading: "Automate Institutional Trading with OTC APIs",
+    description:
+      "Access deep liquidity, automate large-volume trades, and ensure compliance with Nova Crest’s OTC infrastructure APIs for institutional partners.",
+    buttonText: "View OTC API Reference",
+    codeSnippets: {
+      typescript: {
+        language: "typescript",
+        code: `import { NovaCrestOTC } from "@novacrest/ts-sdk";
+
+const otc = new NovaCrestOTC({ apiKey: "api-key", secretKey: "secret-key" });
+
+// Quote request
+const quote = await otc.requestQuote({
+  baseAsset: "BTC",
+  quoteAsset: "USDT",
+  amount: 10,
+});
+
+// Execute trade
+await otc.executeTrade(quote.id);`,
+      },
+      python: {
+        language: "python",
+        code: `from novacrest_sdk import OTCClient
+
+otc = OTCClient(api_key="api-key", secret_key="secret-key")
+
+quote = otc.request_quote(base="BTC", quote="USDT", amount=10)
+otc.execute_trade(quote_id=quote["id"])`,
+      },
+      java: {
+        language: "java",
+        code: `import com.novacrest.sdk.OTCClient;
+
+OTCClient otc = new OTCClient("api-key", "secret-key");
+
+// Request and execute OTC trade
+String quoteId = otc.requestQuote("BTC", "USDT", 10);
+otc.executeTrade(quoteId);`,
+      },
+    },
+  },
+
+  // 🔵 DaaS (Digital Assets as a Service)
+  daas: {
+    heading: "Tokenize and Manage Digital Assets with Nova Crest DaaS",
+    description:
+      "Leverage Nova Crest’s DaaS SDKs to issue, custody, and manage tokenized assets securely with complete auditability and flexible compliance layers.",
+    buttonText: "Explore DaaS Developer Tools",
+    codeSnippets: {
+      typescript: {
+        language: "typescript",
+        code: `import { NovaCrestDaaS } from "@novacrest/ts-sdk";
+
+const daas = new NovaCrestDaaS({ apiKey: "api-key", secretKey: "secret-key" });
+
+// Tokenize a digital asset
+await daas.createToken({
+  name: "RealEstateBond",
+  symbol: "REBND",
+  type: "ERC20",
+  supply: 500000,
+});
+
+// List all issued tokens
+const tokens = await daas.listTokens();`,
+      },
+      python: {
+        language: "python",
+        code: `from novacrest_sdk import DaaSClient
+
+client = DaaSClient(api_key="api-key", secret_key="secret-key")
+
+client.create_token(name="RealEstateBond", symbol="REBND", token_type="ERC20", supply=500_000)
+tokens = client.list_tokens()
+print(tokens)`,
+      },
+      java: {
+        language: "java",
+        code: `import com.novacrest.sdk.DaaSClient;
+
+DaaSClient daas = new DaaSClient("api-key", "secret-key");
+daas.createToken("RealEstateBond", "REBND", "ERC20", 500_000);
+daas.listTokens();`,
+      },
+    },
+  },
+
+  // 🟡 Onramp/Offramp
+  "onramp-offramp": {
+    heading: "Enable Seamless Fiat ↔ Crypto Conversion via Nova Crest APIs",
+    description:
+      "Integrate compliant fiat-to-crypto and crypto-to-fiat conversion directly into your platform with Nova Crest Onramp/Offramp SDKs.",
+    buttonText: "Integrate On/Off-Ramp SDK",
+    codeSnippets: {
+      typescript: {
+        language: "typescript",
+        code: `import { NovaCrestRamp } from "@novacrest/ts-sdk";
+
+const ramp = new NovaCrestRamp({ apiKey: "api-key", secretKey: "secret-key" });
+
+// Initiate fiat-to-crypto conversion
+await ramp.createOnramp({
+  fiatCurrency: "USD",
+  cryptoAsset: "ETH",
+  amount: 1000,
+  walletAddress: "0xabc123..."
+});
+
+// Off-ramp conversion
+await ramp.createOfframp({
+  cryptoAsset: "BTC",
+  fiatCurrency: "EUR",
+  amount: 0.2,
+  bankAccount: "DE123456789"
+});`,
+      },
+      python: {
+        language: "python",
+        code: `from novacrest_sdk import RampClient
+
+ramp = RampClient(api_key="api-key", secret_key="secret-key")
+
+ramp.create_onramp(fiat="USD", crypto="ETH", amount=1000, wallet="0xabc123...")
+ramp.create_offramp(crypto="BTC", fiat="EUR", amount=0.2, bank_account="DE123456789")`,
+      },
+      java: {
+        language: "java",
+        code: `import com.novacrest.sdk.RampClient;
+
+RampClient ramp = new RampClient("api-key", "secret-key");
+ramp.createOnramp("USD", "ETH", 1000, "0xabc123...");
+ramp.createOfframp("BTC", "EUR", 0.2, "DE123456789");`,
+      },
+    },
+  },
+
+  // 🔴 Payments
+  payments: {
+    heading: "Process Global Payments with Blockchain Precision",
+    description:
+      "Accept, send, and reconcile digital payments at scale through Nova Crest’s high-performance blockchain payment APIs with sub-second finality.",
+    buttonText: "Access Payments API Docs",
+    codeSnippets: {
+      typescript: {
+        language: "typescript",
+        code: `import { NovaCrestPayments } from "@novacrest/ts-sdk";
+
+const payments = new NovaCrestPayments({ apiKey: "api-key", secretKey: "secret-key" });
+
+// Create payment
+await payments.createPayment({
+  sender: "Vault123",
+  receiver: "Merchant456",
+  asset: "USDC",
+  amount: 250.00,
+});
+
+// Track payment status
+const status = await payments.getStatus("txn_001");
+console.log(status);`,
+      },
+      python: {
+        language: "python",
+        code: `from novacrest_sdk import PaymentsClient
+
+client = PaymentsClient(api_key="api-key", secret_key="secret-key")
+
+client.create_payment(sender="Vault123", receiver="Merchant456", asset="USDC", amount=250.00)
+status = client.get_status("txn_001")
+print(status)`,
+      },
+      java: {
+        language: "java",
+        code: `import com.novacrest.sdk.PaymentsClient;
+
+PaymentsClient client = new PaymentsClient("api-key", "secret-key");
+client.createPayment("Vault123", "Merchant456", "USDC", 250.00);
+client.getStatus("txn_001");`,
+      },
+    },
+  },
+};
+
+

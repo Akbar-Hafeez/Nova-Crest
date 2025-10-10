@@ -1,13 +1,22 @@
-
 "use client";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { SiTypescript, SiPython } from "react-icons/si";
+import { RiJavaLine } from "react-icons/ri";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { RiJavaLine } from "react-icons/ri";
 
-const codeSnippets: Record<string, { code: string; language: string }> = {
+type CodeSnippet = { code: string; language: string };
+type DevSectionProps = {
+  heading?: string;
+  description?: string;
+  buttonText?: string;
+  codeSnippets?: Record<string, CodeSnippet>;
+};
+
+// Default Nova Crest code snippets
+const defaultCodeSnippets: Record<string, CodeSnippet> = {
   typescript: {
     language: "typescript",
     code: `import { NovaCrest, BasePath } from "@novacrest/ts-sdk";
@@ -71,10 +80,14 @@ TransactionResponse tx = novacrest.createTransaction(
 );`
   }
 };
-export default function DevSection() {
-  const [activeTab, setActiveTab] = useState<"typescript" | "python" | "java">(
-    "java"
-  );
+
+export default function DevSection({
+  heading = "Create Secure Digital Asset Solutions With NOVA Crest APIs",
+  description = "Explore the Nova Crest platform to build with security and scale without limits using our APIs, SDKs, guides, and tutorials.",
+  buttonText = "Explore more",
+  codeSnippets = defaultCodeSnippets
+}: DevSectionProps) {
+  const [activeTab, setActiveTab] = useState<"typescript" | "python" | "java">("typescript");
 
   const tabs = [
     { id: "java", label: "Java", icon: <RiJavaLine size={16} /> },
@@ -83,26 +96,58 @@ export default function DevSection() {
   ] as const;
 
   return (
-    <section className="mt-10 sm:mt-16 md:mt-20 bg-[#0a1630] text-white py-10 sm:py-14 md:py-16 px-4 sm:px-6 md:px-12 rounded-md">
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="mt-10 sm:mt-16 md:mt-20 bg-[#0a1630] text-white py-10 sm:py-14 md:py-16 px-4 sm:px-6 md:px-12 rounded-md"
+    >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* Left side */}
-        <div className="mt-4 sm:mt-6 md:mt-10">
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mt-4 sm:mt-6 md:mt-10"
+        >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug sm:leading-tight mb-4">
-            Create Secure Digital Asset Solutions With NOVA Crest APIs
+            {heading}
           </h2>
-          <p className="text-base sm:text-lg text-gray-300 my-6 sm:my-8">
-            Explore the Nova Crest platform to build with security and scale 
-            without limits using our APIs, SDKs, guides, and tutorials.
-          </p>
-          <Button variant="secondary" showArrow className="px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base  md:text-lg">
-            Explore more
+          <p className="text-base sm:text-lg text-gray-300 my-6 sm:my-8">{description}</p>
+          <Button
+            variant="secondary"
+            showArrow
+            className="px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base md:text-lg"
+          >
+            {buttonText}
           </Button>
-        </div>
+        </motion.div>
 
         {/* Right side */}
-        <div className="bg-[#111c3d] rounded-xl shadow-lg p-3 sm:p-4 overflow-x-auto">
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="relative bg-[#111c3d] rounded-xl shadow-lg p-3 sm:p-4 overflow-x-auto"
+        >
+          {/* Glowing border animation */}
+          <motion.div
+            animate={{
+              boxShadow: [
+                "0 0 0px rgba(139,92,246,0)",
+                "0 0 15px rgba(139,92,246,0.6)",
+                "0 0 0px rgba(139,92,246,0)",
+              ],
+            }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-0 rounded-xl pointer-events-none"
+          />
+
           {/* Tabs */}
-          <div className="flex flex-wrap gap-2 sm:gap-3 mb-4">
+          <div className="flex flex-wrap gap-2 sm:gap-3 mb-4 relative z-10">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
@@ -120,7 +165,7 @@ export default function DevSection() {
           </div>
 
           {/* Code block */}
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto relative z-10">
             <SyntaxHighlighter
               language={codeSnippets[activeTab].language}
               style={oneDark}
@@ -136,8 +181,8 @@ export default function DevSection() {
               {codeSnippets[activeTab].code}
             </SyntaxHighlighter>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

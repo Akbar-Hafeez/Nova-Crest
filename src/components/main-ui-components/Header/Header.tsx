@@ -333,7 +333,7 @@ export default function Header() {
                     : item.dropdown?.map((d, idx) => (
                         <Link
                           key={idx}
-                          href="#"
+                          href={d.href ?? "#"}
                           onClick={() => setSidebarOpen(false)}
                           className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition text-base"
                         >

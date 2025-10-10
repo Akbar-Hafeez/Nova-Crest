@@ -27,6 +27,7 @@ import {
   FaWallet,
   FaMoneyBillWave,
   FaChartBar,
+  FaChevronRight,
 } from "react-icons/fa";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
@@ -103,6 +104,7 @@ export default function Header() {
     },
     {
       label: "Products",
+      
       dropdown: [
         {
           label: "Stablecoin Infrastructure",
@@ -180,94 +182,119 @@ export default function Header() {
     <header className="sticky top-0 z-50">
       <div className="bg-gray-100 flex items-center justify-between rounded-lg mt-5 px-7 z-50">
         <Link href="/" className="cursor-pointer">
-          <Image src={"/Logo/logo.png"} alt="Logo" width={85} height={60} />
+          <Image src={"/Logo/logo.png"} alt="Logo" width={95} height={60} />
         </Link>
 
-        {/* Desktop Navigation */}
-        <ul className="hidden md:flex gap-3 lg:gap-6 font-medium text-lg relative">
-          {navItems.map((item) => (
-            <li
-              key={item.label}
-              className="relative cursor-pointer group"
-              onMouseEnter={() => setOpenDropdown(item.label)}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <div className="flex items-center gap-1 duration-300 hover:text-[#7f00ff] relative z-50">
-                <span>{item.label}</span>
-                {openDropdown === item.label ? (
-                  <FaChevronUp size={10} />
-                ) : (
-                  <FaChevronDown size={10} />
-                )}
-              </div>
+{/* Desktop Navigation */}
+<ul className="hidden md:flex gap-3 lg:gap-6 font-medium text-lg relative">
+  {navItems.map((item) => (
+    <li
+      key={item.label}
+      className="relative cursor-pointer group"
+      onMouseEnter={() => setOpenDropdown(item.label)}
+      onMouseLeave={() => setOpenDropdown(null)}
+    >
+      {item.label === "Clients" ? (
+        // ✅ Clients navigates + closes dropdown
+        <Link
+          href={item.href ?? "#"}
+          className="flex items-center gap-1 duration-300 hover:text-[#7f00ff] relative z-50"
+          onClick={() => {
+            // close dropdown immediately when navigating to clients
+            setOpenDropdown(null);
+          }}
+        >
+          <span>{item.label}</span>
+          {openDropdown === item.label ? (
+            <FaChevronUp size={10} />
+          ) : (
+            <FaChevronDown size={10} />
+          )}
+        </Link>
+      ) : (
+        // 🚫 Other menu items only open dropdowns
+        <button
+          className="flex items-center gap-1 duration-300 hover:text-[#7f00ff] relative z-50"
+          onClick={(e) => {
+            e.preventDefault();
+            setOpenDropdown(openDropdown === item.label ? null : item.label);
+          }}
+        >
+          <span>{item.label}</span>
+          {openDropdown === item.label ? (
+            <FaChevronUp size={10} />
+          ) : (
+            <FaChevronDown size={10} />
+          )}
+        </button>
+      )}
 
-              {/* Dropdown */}
-              {openDropdown === item.label && (
-                <div className="absolute left-0 top-full bg-white backdrop-blur-md rounded-xl shadow-lg py-4 px-4 z-50 animate-fadeIn w-max">
-                  {/* Transparent hover bridge (fix gap issue) */}
-                  <div className="absolute -top-3 left-0 w-full h-3 bg-transparent"></div>
+      {/* Dropdown */}
+      {openDropdown === item.label && (
+        <div className="absolute left-0 top-full bg-white backdrop-blur-md rounded-xl shadow-lg py-4 px-4 z-50 animate-fadeIn w-max">
+          {/* Transparent hover bridge */}
+          <div className="absolute -top-3 left-0 w-full h-3 bg-transparent"></div>
 
-                  {"dropdownColumns" in item ? (
-                    <div className="grid grid-cols-2 gap-3">
-                      {item.dropdownColumns?.map((col, idx) => (
-                        <ul key={idx} className="flex flex-col gap-1">
-                          {col.map((d, i) => (
-                            <li
-                              key={i}
-                              onClick={() => setOpenDropdown(null)}
-                              className="opacity-0 animate-fadeInItem"
-                              style={{ animationDelay: `${i * 0.05}s` }}
-                            >
-                              <Link
-                                href={d.href ?? "#"}
-                                className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition"
-                              >
-                                <span className="flex items-center justify-center bg-gray-100 rounded-md w-9 h-9 shrink-0">
-                                  {d.icon}
-                                </span>
-                                <span className="text-gray-800 font-medium">
-                                  {d.label}
-                                </span>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      ))}
+          {"dropdownColumns" in item ? (
+            <div className="grid grid-cols-2 gap-3">
+              {item.dropdownColumns?.map((col, idx) => (
+                <ul key={idx} className="flex flex-col gap-1">
+                  {col.map((d, i) => (
+                    <li
+                      key={i}
+                      onClick={() => setOpenDropdown(null)}
+                      className="opacity-0 animate-fadeInItem"
+                      style={{ animationDelay: `${i * 0.05}s` }}
+                    >
+                      <Link
+                        href={d.href ?? "#"}
+                        className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition"
+                      >
+                        <span className="flex items-center justify-center bg-gray-100 rounded-md w-9 h-9 shrink-0">
+                          {d.icon}
+                        </span>
+                        <span className="text-gray-800 font-medium">
+                          {d.label}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
+          ) : (
+            <ul className="flex flex-col gap-2">
+              {item.dropdown?.map((d, idx) => (
+                <li
+                  key={idx}
+                  onClick={() => setOpenDropdown(null)}
+                  className="opacity-0 animate-fadeInItem"
+                  style={{ animationDelay: `${idx * 0.05}s` }}
+                >
+                  <Link
+                    href={d.href ?? "#"}
+                    className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition"
+                  >
+                    <span className="flex items-center justify-center bg-gray-100 rounded-md w-9 h-9 shrink-0">
+                      {d.icon}
+                    </span>
+                    <div>
+                      <p>{d.label}</p>
+                      {d.desc && (
+                        <p className="text-sm text-gray-500">{d.desc}</p>
+                      )}
                     </div>
-                  ) : (
-                    <ul className="flex flex-col gap-2">
-                      {item.dropdown?.map((d, idx) => (
-                        <li
-                          key={idx}
-                          onClick={() => setOpenDropdown(null)}
-                          className="opacity-0 animate-fadeInItem"
-                          style={{ animationDelay: `${idx * 0.05}s` }}
-                        >
-                          <Link
-                            href={d.href ?? '#'}
-                            className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition"
-                          >
-                            <span className="flex items-center justify-center bg-gray-100 rounded-md w-9 h-9 shrink-0">
-                              {d.icon}
-                            </span>
-                            <div>
-                              <p>{d.label}</p>
-                              {d.desc && (
-                                <p className="text-sm text-gray-500">
-                                  {d.desc}
-                                </p>
-                              )}
-                            </div>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+    </li>
+  ))}
+</ul>
+
 
         {/* CTA */}
         <div className="hidden md:block">
@@ -284,77 +311,119 @@ export default function Header() {
         </Button>
       </div>
 
-      {/* Mobile Drawer */}
-      <div
-        className={`fixed top-0 left-0 right-0 max-h-screen overflow-y-auto bg-white/80 backdrop-blur-lg text-black shadow-lg transform transition-transform duration-500 ease-in-out z-50 rounded-b-2xl ${
-          sidebarOpen ? "translate-y-0" : "-translate-y-full"
-        }`}
-      >
-        <Button
-          className="absolute top-4 right-4 text-2xl text-[#7f00ff]"
-          onClick={() => setSidebarOpen(false)}
-        >
-          <FaTimes />
-        </Button>
+   <div
+  className={`fixed top-0 left-0 right-0 max-h-screen overflow-y-auto bg-white/80 backdrop-blur-lg text-black shadow-lg transform transition-transform duration-500 ease-in-out z-50 rounded-b-2xl ${
+    sidebarOpen ? "translate-y-0" : "-translate-y-full"
+  }`}
+>
+  {/* Close Button */}
+  <Button
+    className="absolute top-4 right-4 text-2xl text-[#7f00ff]"
+    onClick={() => setSidebarOpen(false)}
+  >
+    <FaTimes />
+  </Button>
 
-        <nav className="mt-20 flex flex-col gap-4 px-6 font-medium text-lg">
-          {navItems.map((item) => (
-            <div key={item.label} className="border-b border-gray-200 pb-2">
-              <div
-                className="flex justify-between items-center cursor-pointer"
-                onClick={() =>
-                  setMobileDropdown(
-                    mobileDropdown === item.label ? null : item.label
-                  )
-                }
-              >
-                <span className="font-semibold">{item.label}</span>
-                {mobileDropdown === item.label ? (
-                  <FaChevronUp size={14} />
-                ) : (
-                  <FaChevronDown size={14} />
-                )}
-              </div>
-
-              {mobileDropdown === item.label && (
-                <div className="mt-2 animate-fadeIn flex flex-col gap-2">
-                  {"dropdownColumns" in item
-                    ? item.dropdownColumns?.flat().map((d, idx) => (
-                        <Link
-                          key={idx}
-                          href={d.href ?? "#"}
-                          onClick={() => setSidebarOpen(false)}
-                          className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition text-base"
-                        >
-                          <span className="text-[#7f00ff]">{d.icon}</span>
-                          <span>{d.label}</span>
-                        </Link>
-                      ))
-                    : item.dropdown?.map((d, idx) => (
-                        <Link
-                          key={idx}
-                          href={d.href ?? "#"}
-                          onClick={() => setSidebarOpen(false)}
-                          className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition text-base"
-                        >
-                          <span className="text-[#7f00ff]">{d.icon}</span>
-                          <span>{d.label}</span>
-                        </Link>
-                      ))}
-                </div>
-              )}
-            </div>
-          ))}
-
-          {/* Fixed: Drawer closes when clicking this */}
-          <Button
-            className="my-4 w-full"
-            onClick={() => setSidebarOpen(false)}
+  {/* Navigation */}
+  <nav className="mt-20 flex flex-col gap-4 px-6 font-medium text-lg">
+    {navItems.map((item) => (
+      <div key={item.label} className="border-b border-gray-200 pb-2">
+        {/* ✅ Clients Label — Clickable + Dropdown Works */}
+        {item.label === "Clients" ? (
+          <div
+            className="flex justify-between items-center cursor-pointer"
+            onClick={() =>
+              setMobileDropdown(
+                mobileDropdown === item.label ? null : item.label
+              )
+            }
           >
-            Get Started
-          </Button>
-        </nav>
+            <Link
+              href={item.href ?? "#"}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent dropdown toggle when clicking label
+                setSidebarOpen(false);
+                setMobileDropdown(null);
+              }}
+              className="font-semibold hover:text-[#7f00ff] transition"
+            >
+              {item.label}
+            </Link>
+            {mobileDropdown === item.label ? (
+              <FaChevronUp size={14} className="text-[#7f00ff]" />
+            ) : (
+              <FaChevronDown size={14} className="text-[#7f00ff]" />
+            )}
+          </div>
+        ) : (
+          // 🚫 Other Labels — Dropdown Only (No Navigation)
+          <div
+            className="flex justify-between items-center cursor-pointer"
+            onClick={() =>
+              setMobileDropdown(
+                mobileDropdown === item.label ? null : item.label
+              )
+            }
+          >
+            <span className="font-semibold hover:text-[#7f00ff] transition">
+              {item.label}
+            </span>
+            {mobileDropdown === item.label ? (
+              <FaChevronUp size={14} className="text-[#7f00ff]" />
+            ) : (
+              <FaChevronDown size={14} className="text-[#7f00ff]" />
+            )}
+          </div>
+        )}
+
+        {/* Dropdown Items */}
+        {mobileDropdown === item.label && (
+          <div className="mt-2 animate-fadeIn flex flex-col gap-2">
+            {"dropdownColumns" in item
+              ? item.dropdownColumns?.flat().map((d, idx) => (
+                  <Link
+                    key={idx}
+                    href={d.href ?? "#"}
+                    onClick={() => {
+                      setSidebarOpen(false);
+                      setMobileDropdown(null);
+                    }}
+                    className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition text-base"
+                  >
+                    <span className="text-[#7f00ff]">{d.icon}</span>
+                    <span>{d.label}</span>
+                  </Link>
+                ))
+              : item.dropdown?.map((d, idx) => (
+                  <Link
+                    key={idx}
+                    href={d.href ?? "#"}
+                    onClick={() => {
+                      setSidebarOpen(false);
+                      setMobileDropdown(null);
+                    }}
+                    className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition text-base"
+                  >
+                    <span className="text-[#7f00ff]">{d.icon}</span>
+                    <span>{d.label}</span>
+                  </Link>
+                ))}
+          </div>
+        )}
       </div>
+    ))}
+
+    {/* CTA Button */}
+    <Button
+      className="my-4 w-full"
+      onClick={() => setSidebarOpen(false)}
+    >
+      Get Started
+    </Button>
+  </nav>
+</div>
+
+
     </header>
   );
 }

@@ -1,3 +1,4 @@
+"use client"
 import Clients from "@/components/main-ui-components/LandingPage/clients/Clients";
 import CtaBanner from "@/components/main-ui-components/LandingPage/CtaBanner/CtaBanner";
 import DevSection from "@/components/main-ui-components/LandingPage/DeveloperBanner/Developer";
@@ -7,8 +8,18 @@ import HeroSection from "@/components/main-ui-components/LandingPage/HeroSection
 import KPIs from "@/components/main-ui-components/LandingPage/KPIs/KPIs";
 import ProductTab from "@/components/main-ui-components/LandingPage/ProductsTab/ProductTab";
 import Trust from "@/components/main-ui-components/LandingPage/TrustSection/Trust";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 const Page = () => {
+   const pathname = usePathname();
+   
+     // ✅ Scroll to top whenever user navigates to home
+     useEffect(() => {
+       if (pathname === "/") {
+         window.scrollTo({ top: 0, behavior: "instant" });
+       }
+     }, [pathname]);
   return (
     <div className="">
       <HeroSection/>

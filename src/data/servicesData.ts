@@ -378,3 +378,110 @@ export const productCtas = {
     },
   ],
 };
+// 🏆 Product Reviews mapped by slug
+export const productReviews = {
+  "stablecoin-infrastructure": [
+    {
+      logo: "/Partners/metamask.svg",
+      company: "MetaMask",
+      quote:
+        "Nova Crest’s stablecoin infrastructure gave us full control and transparency over our tokenized reserves — setting new standards for compliant, enterprise-grade deployments.",
+      author: "Lorenzo Santos",
+      role: "Product Lead, MetaMask",
+      image: "/Partners/lorenzo.png",
+    },
+    {
+      logo: "/Partners/new-visa-logo.webp",
+      company: "Visa",
+      quote:
+        "Through Nova Crest’s reserve-backed framework, Visa can now facilitate cross-border settlements faster and with on-chain verifiability — a true evolution in payments.",
+      author: "Yanilsa Gonzalez-Ore",
+      role: "VP Payments, Visa",
+      image: "/Partners/yanilsa.jpeg",
+    },
+  ],
+
+  otc: [
+    {
+      logo: "/Partners/Kraken-logo.png",
+      company: "Kraken",
+      quote:
+        "Nova Crest’s OTC technology seamlessly integrates liquidity from top exchanges, enabling high-volume institutional execution with precision and reliability.",
+      author: "James Ellis",
+      role: "Head of OTC, Kraken",
+        image: "/Partners/lorenzo.png",
+    },
+    {
+      logo: "/Partners/binance-us.svg",
+      company: "Binance Institutional",
+      quote:
+        "By leveraging Nova Crest’s OTC aggregation tools, our trading desk achieved deeper liquidity access and faster settlement cycles across multiple networks.",
+      author: "Clara Zhang",
+      role: "Global Trading Operations, Binance",
+     image: "/Partners/mary-cath.jpeg",
+    },
+  ],
+
+  daas: [
+    {
+      logo: "/Partners/Trust-Wallet-Logo.png",
+      company: "Trust Wallet",
+      quote:
+        "With Nova Crest’s Digital Assets as a Service, we launched tokenized assets globally — achieving high scalability and compliance without compromising user experience.",
+      author: "Maria Lopez",
+      role: "Blockchain Partnerships, Trust Wallet",
+     image: "/Partners/yanilsa.jpeg",
+    },
+    {
+  logo: "/Partners/phantom.svg",
+  company: "Phantom",
+  quote:
+    "By leveraging Nova Crest’s DaaS infrastructure, Phantom delivers seamless tokenized asset management with enterprise-grade security and transparent on-chain verification.",
+  author: "Ryan Peterson",
+  role: "Partnerships Manager, Phantom",
+  image: "/Partners/lorenzo.png",
+},
+  ],
+
+  "onramp-offramp": [
+    {
+      logo: "/Partners/gpay.svg",
+      company: "Google Pay",
+      quote:
+        "Nova Crest’s on/off-ramp APIs helped us embed seamless crypto-to-fiat transactions directly within Google Pay, all under strict global compliance frameworks.",
+      author: "Kevin Brooks",
+      role: "Payments Strategy, Google Pay",
+      image: "/Partners/brian.png",
+    },
+    {
+      logo: "/Partners/sepa.svg",
+      company: "SEPA",
+      quote:
+        "Partnering with Nova Crest accelerated our digital asset conversion capabilities — enabling near-instant settlements between traditional and blockchain economies.",
+      author: "Isabella Grant",
+      role: "Crypto Product Lead, SEPA",
+      image: "/Partners/mary-cath.jpeg",
+    },
+  ],
+
+  payments: [
+    {
+      logo: "/Partners/new-mclogo.svg",
+      company: "Mastercard",
+      quote:
+        "Nova Crest’s blockchain payment rails provide the scalability and compliance needed for enterprise-grade cross-border transfers with real-time transparency.",
+      author: "Sophie Turner",
+      role: "Innovation Lead, Mastercard",
+     image: "/Partners/mary-cath.jpeg",
+    },
+    {
+      logo: "/Partners/apple-pay.svg",
+      company: "Apple Pay",
+      quote:
+        "With Nova Crest’s payment infrastructure, Apple Pay achieved faster settlements and better traceability across digital and fiat payment ecosystems.",
+      author: "Michael Reyes",
+      role: "Head of Blockchain Integrations, Apple Pay",
+      image: "/Partners/brian.png",
+    },
+  ],
+};

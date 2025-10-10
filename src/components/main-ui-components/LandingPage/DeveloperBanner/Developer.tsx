@@ -94,7 +94,7 @@ export default function DevSection() {
             Explore the Nova Crest platform to build with security and scale 
             without limits using our APIs, SDKs, guides, and tutorials.
           </p>
-          <Button variant="secondary" showArrow className="px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base text-white md:text-lg">
+          <Button variant="secondary" showArrow className="px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base  md:text-lg">
             Explore more
           </Button>
         </div>

@@ -28,10 +28,10 @@ export default function HeroSection() {
            Join leading companies that trust Nova Crest for global stablecoin payments, seamless fiat payouts and collections, and next-generation embedded crypto services.
           </p>
           <div className="mt-8 flex flex-wrap gap-4 ">
-            <Button >Get Started</Button>
+            <Button variant="secondary">Get Started</Button>
             <Button
-            //   variant="outline"
-              className="bg-color border border-black text-black "
+              variant="outline"
+              className="  "
             >
               Explore our Products
             </Button>

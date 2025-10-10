@@ -176,6 +176,7 @@ export default function ProductTab() {
                 </p>
                 <Button
                   showArrow
+                  variant="secondary"
                   className="mt-4 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base"
                 >
                   Explore now

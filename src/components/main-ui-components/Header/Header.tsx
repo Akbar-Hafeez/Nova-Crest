@@ -106,26 +106,31 @@ export default function Header() {
       dropdown: [
         {
           label: "Stablecoin Infrastructure",
+           href: "/products/stablecoin-infrastructure",
           desc: "Deploy, manage, and scale stablecoins securely.",
           icon: <FaCoins size={14} className="text-[#7f00ff]" />,
         },
         {
           label: "Onramp / Offramp",
+            href: "/products/onramp-offramp",
           desc: "Enable fiat-crypto conversions effortlessly.",
           icon: <FaArrowRightArrowLeft size={14} className="text-[#7f00ff]" />,
         },
         {
           label: "Digital Assets as a Service",
+            href: "/products/daas",
           desc: "Offer secure and compliant digital asset services.",
           icon: <FaWallet size={14} className="text-[#7f00ff]" />,
         },
         {
           label: "Payments",
+            href: "/products/payments",
           desc: "Seamless cross-border and blockchain payments.",
           icon: <FaMoneyBillWave size={14} className="text-[#7f00ff]" />,
         },
         {
           label: "OTC",
+            href: "/products/otc",
           desc: "Access institutional-grade digital asset liquidity.",
           icon: <FaChartBar size={14} className="text-[#7f00ff]" />,
         },
@@ -239,7 +244,7 @@ export default function Header() {
                           style={{ animationDelay: `${idx * 0.05}s` }}
                         >
                           <Link
-                            href="#"
+                            href={d.href ?? '#'}
                             className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition"
                           >
                             <span className="flex items-center justify-center bg-gray-100 rounded-md w-9 h-9 shrink-0">
@@ -266,7 +271,7 @@ export default function Header() {
 
         {/* CTA */}
         <div className="hidden md:block">
-          <Button>Get Started</Button>
+          <Button variant="secondary">Get Started</Button>
         </div>
 
         {/* Mobile Menu Button */}

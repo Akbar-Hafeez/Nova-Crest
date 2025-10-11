@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa";
 import { FaLandmark } from "react-icons/fa6";
 import { Check } from "lucide-react";
+import Image from "next/image";
 
 type ClientCard = {
   id: string;
@@ -21,7 +22,19 @@ type ClientCard = {
   bullets: string[];
   icon: React.ReactNode;
 };
-
+const partners = [
+      { logo: "/Partners/apple-pay.svg", name: "apple" },
+      { logo: "/Partners/Kraken-logo.png", name: "kraken" },
+      { logo: "/Partners/KUCOIN-logo.png", name: "Kucoin" },
+      { logo: "/Partners/new-visa-logo.webp", name: "visa" },
+      { logo: "/Partners/gpay.svg", name: "gpay" },
+      { logo: "/Partners/new-Worldpay_logo.webp", name: "worldpay" },
+      { logo: "/Partners/wire.svg", name: "wire" },
+      { logo: "/Partners/new-mclogo.svg", name: "mclogo" },
+      { logo: "/Partners/Trust-Wallet-Logo.png", name: "Trust" },
+      { logo: "/Partners/sepa.svg", name: "sepa" },
+      
+    ]
 const clients: ClientCard[] = [
   {
     id: "financial",
@@ -140,19 +153,34 @@ export default function ClientsSection(): JSX.Element {
   return (
     <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Section Heading */}
+        {/* Section  Heading*/}
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-extrabold ">
-            Empowering Modern Financial & Web3 Innovators
+            Empowering a Diverse Network of Financial and Digital Innovators
           </h2>
-          <p className="mt-4 text-lg text-color max-w-2xl mx-auto">
-            We partner with trading, fintech, and Web3 leaders to deliver
-            scalable, compliant, and high-performance digital infrastructure.
+          <p className="mt-4 md:mt-6 lg:mt-8 text-lg text-color max-w-2xl mx-auto">
+            We empower a diverse network of innovators — from fintechs and trading firms to Web3 startups and global financial institutions — delivering reliable infrastructure tailored to their unique needs.
           </p>
         </div>
-
+        {/* Nova Crest network section */}
+       <div className="grid gap-8 md:pt-10 pb-20"> 
+        <h1 className="text-4xl md:text-5xl font-bold text-center">The Nova Crest Network</h1>
+        <div className="flex flex-wrap justify-center lg:py-10 items-center gap-16 lg:mx-20">
+        {partners.map((partner) =>
+          <Image 
+          key={partner.name}       
+          src={partner.logo}
+          alt={partner.name}
+          width={110}
+          height={120}
+          />
+        )}
+        </div>
+       </div>
         {/* Alternating Rows */}
+        {/* <h1 className="text-center py- main-heading">Our Clients</h1> */}
         <div className="space-y-20 lg:mx-20">
+
           {clients.map((c, index) => {
             const reverse = index % 2 !== 0;
             return (

@@ -186,9 +186,9 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50">
-      <div className="bg-gray-100 flex items-center justify-between rounded-lg mt-5 px-7 z-50">
+      <div className="bg-gray-200 flex items-center justify-between rounded-lg mt-5 px-7 z-50">
         <Link href="/" className="cursor-pointer">
-          <Image src={"/Logo/logo.png"} alt="Logo" width={95} height={60} />
+          <Image src={"/Logo/logo.png"} alt="Logo" width={93} height={60} />
         </Link>
 
 {/* Desktop Navigation */}

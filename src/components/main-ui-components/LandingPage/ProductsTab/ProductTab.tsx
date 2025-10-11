@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function ProductTab() {
   const [currentTab, setCurrentTab] = useState<string>("Stablecoin infrastructure");
@@ -66,10 +67,11 @@ export default function ProductTab() {
 
   const content: Record<
     string,
-    { sub: string; heading: string; paragraph: string; image: React.ReactNode }
+    { sub: string; href : string ; heading: string; paragraph: string; image: React.ReactNode }
   > = {
     "Stablecoin infrastructure": {
       sub: "Stablecoin",
+      href: "/products/stablecoin-infrastructure",
       heading: "Trusted Stablecoin Framework",
       paragraph:
         "Build, scale, and manage stablecoins with high liquidity and transparent compliance frameworks.",
@@ -85,6 +87,7 @@ export default function ProductTab() {
     },
     "Onramp / offramp": {
       sub: "Onramp/Offramp",
+      href: "/products/onramp-offramp",
       heading: "Seamless Fiat ↔ Crypto Conversion",
       paragraph:
         "Move between fiat and crypto effortlessly. Empower users with easy deposit and withdrawal options.",
@@ -100,6 +103,7 @@ export default function ProductTab() {
     },
     "Digital assets as a Service": {
       sub: "Digital Assets as a Service",
+     href: "/products/daas",
       heading: "Seamless Crypto Integration with NOVA",
       paragraph:
         "Add trading, rewards, custody, and lending to your app in minutes. Nova APIs handle infrastructure, compliance, and security, so you can focus on growth.",
@@ -115,6 +119,8 @@ export default function ProductTab() {
     },
     Payments: {
       sub: "Payments",
+     href: "/products/payments",
+
       heading: "Frictionless Payments Anywhere",
       paragraph:
         "Accept global payments with low fees and instant settlement. Make every transaction fast and borderless.",
@@ -130,6 +136,7 @@ export default function ProductTab() {
     },
     OTC: {
       sub: "OTC",
+      href: "/products/otc",
       heading: "Secure OTC Trading",
       paragraph:
         "High-volume crypto trading with tight spreads and institutional-grade security for peace of mind.",
@@ -146,7 +153,7 @@ export default function ProductTab() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative" id="productTab">
       <div className="relative">
         {/* Content Sections */}
         {tabsName.map((tab, index) => {
@@ -174,13 +181,13 @@ export default function ProductTab() {
                 <p className="paragraph text-sm sm:text-base md:text-lg max-w-md">
                   {content[tab].paragraph}
                 </p>
-                <Button
+                <Link href={content[tab].href}><Button
                   showArrow
                   variant="secondary"
                   className="mt-4 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base"
                 >
                   Explore now
-                </Button>
+                </Button></Link>
               </div>
 
               {/* Image Block */}

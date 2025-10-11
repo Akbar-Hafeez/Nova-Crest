@@ -3,7 +3,11 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import "animate.css";
+import { useDialogStore } from '@/store/useDialogStore';
+import Link from 'next/link';
 export default function HeroSection() {
+  const { open} = useDialogStore()
+  
   const technologiesName = ["Finance","Crypto","Payments","Banking"] ;
   const [index , setIndex] = useState<number>(0)
   useEffect(() => {
@@ -28,13 +32,15 @@ export default function HeroSection() {
            Join leading companies that trust Nova Crest for global stablecoin payments, seamless fiat payouts and collections, and next-generation embedded crypto services.
           </p>
           <div className="mt-8 flex flex-wrap gap-4 ">
-            <Button variant="secondary">Get Started</Button>
-            <Button
+            <Button onClick={open} variant="secondary">Get Started</Button>
+
+            <Link href={"#productTab"}><Button
               variant="outline"
-              className="  "
+              className=""
+              
             >
               Explore our Products
-            </Button>
+            </Button></Link>
           </div>
         </div >
 

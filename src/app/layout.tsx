@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import {  Inter } from "next/font/google";
 import "./globals.css";
 import "animate.css"
+import {Toaster} from "react-hot-toast"
+import GetStartedDialog from "@/components/reusablesComponents/GetStartedDialog/GetStartedDialog";
 
 const inter = Inter({
   weight: ["400", "500", "700"], // choose the weights you need
@@ -23,7 +25,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable}  antialiased `}
       >
+
         {children}
+        <GetStartedDialog/>
+        <Toaster/>
       </body>
     </html>
   );

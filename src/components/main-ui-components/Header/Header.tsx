@@ -31,6 +31,7 @@ import {
 } from "react-icons/fa";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
+import { useDialogStore } from "@/store/useDialogStore";
 
 type DropdownItem = {
   label: string;
@@ -50,6 +51,11 @@ export default function Header() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const { open} = useDialogStore();
+  const handleMobileClick = () => {
+    // setSidebarOpen(false)
+    open()
+     }
 
   const navItems: NavItem[] = [
     {
@@ -298,8 +304,9 @@ export default function Header() {
 
         {/* CTA */}
         <div className="hidden md:block">
-          <Button variant="secondary">Get Started</Button>
+          <Button variant="secondary" onClick={open} >Get Started</Button>
         </div>
+        
 
         {/* Mobile Menu Button */}
         <Button
@@ -416,7 +423,7 @@ export default function Header() {
     {/* CTA Button */}
     <Button
       className="my-4 w-full"
-      onClick={() => setSidebarOpen(false)}
+      onClick={handleMobileClick}
     >
       Get Started
     </Button>

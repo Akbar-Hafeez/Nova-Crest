@@ -2,6 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useDialogStore } from "@/store/useDialogStore";
 
 type CtaBannerProps = {
   heading: string;
@@ -9,6 +10,7 @@ type CtaBannerProps = {
 };
 
 const CtaBannerUtil: React.FC<CtaBannerProps> = ({ heading, button }) => {
+  const {open} = useDialogStore();
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -50,7 +52,7 @@ const CtaBannerUtil: React.FC<CtaBannerProps> = ({ heading, button }) => {
           transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          <Button className="px-5 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 text-sm sm:text-base md:text-lg shadow-md hover:shadow-lg transition">
+          <Button onClick={open} className="px-5 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 text-sm sm:text-base md:text-lg shadow-md hover:shadow-lg transition">
             {button}
           </Button>
         </motion.div>

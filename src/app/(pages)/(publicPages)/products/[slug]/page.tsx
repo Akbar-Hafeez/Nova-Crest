@@ -29,6 +29,7 @@ export default function ProductPage({ params }: Props) {
   return (
     <div>
       <ProductLayout
+      slug={product.slug}
         title={product.title}
         description={product.description}
         imageSrc={product.imageSrc}

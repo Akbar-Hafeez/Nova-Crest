@@ -210,3 +210,6 @@ border-color:#7f00ff;
     @apply bg-background text-foreground mx-4 md:mx-8 lg:mx-10;
   }
 }
+html{
+  scroll-behavior: smooth;
+}

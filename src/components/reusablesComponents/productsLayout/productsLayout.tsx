@@ -3,6 +3,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { IconType } from "react-icons";
 import { Button } from "@/components/ui/button";
+import { useDialogStore } from "@/store/useDialogStore";
+import Link from "next/link";
+
 
 interface Feature {
   icon: IconType;
@@ -22,6 +25,7 @@ interface ProductLayoutProps {
   partners: Partner[];
   featureHeading?: string;
   partnerHeading?: string;
+  slug:string;
 }
 
 const ProductLayout = ({
@@ -32,7 +36,9 @@ const ProductLayout = ({
   partners,
   featureHeading = "Key Features",
   partnerHeading = "Our Partners",
+  slug
 }: ProductLayoutProps) => {
+  const {open} = useDialogStore();
   return (
     <section className="w-full bg-white text-black overflow-hidden">
     
@@ -52,8 +58,8 @@ const ProductLayout = ({
       {description}
     </p>
     <div className="flex flex-wrap gap-4">
-      <Button variant="secondary">Get Started</Button>
-      <Button variant="outline">Learn More</Button>
+      <Button onClick={open} variant="secondary">Get Started</Button>
+      <Link href={`/products/${slug}#developer`}> <Button variant="outline">Learn More</Button></Link>
     </div>
   </motion.div>
 
@@ -123,7 +129,7 @@ const ProductLayout = ({
       </div>
 
       {/*  Features Section */}
-      <div className="max-w-6xl mx-auto px-6 py-16">
+      <div id="#features" className="max-w-6xl mx-auto px-6 py-16" >
         <h2 className="text-center text-3xl lg:text-4xl font-semibold mb-12 ">
           {featureHeading}
         </h2>

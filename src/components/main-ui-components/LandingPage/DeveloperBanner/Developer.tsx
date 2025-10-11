@@ -84,7 +84,7 @@ TransactionResponse tx = novacrest.createTransaction(
 export default function DevSection({
   heading = "Create Secure Digital Asset Solutions With NOVA Crest APIs",
   description = "Explore the Nova Crest platform to build with security and scale without limits using our APIs, SDKs, guides, and tutorials.",
-  buttonText = "Explore more",
+  buttonText = "Explore API docs",
   codeSnippets = defaultCodeSnippets
 }: DevSectionProps) {
   const [activeTab, setActiveTab] = useState<"typescript" | "python" | "java">("typescript");

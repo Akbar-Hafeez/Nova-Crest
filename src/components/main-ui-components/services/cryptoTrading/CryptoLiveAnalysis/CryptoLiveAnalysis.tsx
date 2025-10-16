@@ -44,7 +44,7 @@ const CryptoLiveAnalysis = () => {
         );
         const data = await res.json();
 
-        const updated = data.slice(0, 7).map((coin:string | any) => ({
+        const updated = data.slice(0, 7).map((coin:Coin ) => ({
           ...coin,
           binanceSymbol:
             coin.symbol.toUpperCase() === "BTC"

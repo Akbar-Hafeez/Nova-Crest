@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default function HeroSection() {
   const { open} = useDialogStore()
   
-  const technologiesName = ["Finance","Crypto","Payments","Banking"] ;
+  const technologiesName = ["Web3","Finance","Crypto","Payments","Blockchain"] ;
   const [index , setIndex] = useState<number>(0)
   useEffect(() => {
   const interval = setInterval(() => {
@@ -34,12 +34,12 @@ export default function HeroSection() {
           <div className="mt-8 flex flex-wrap gap-4 ">
             <Button onClick={open} variant="secondary">Get Started</Button>
 
-            <Link href={"#productTab"}><Button
+            <Link href={"#servicesTab"}><Button
               variant="outline"
               className=""
               
             >
-              Explore our Products
+              Explore our Services
             </Button></Link>
           </div>
         </div >

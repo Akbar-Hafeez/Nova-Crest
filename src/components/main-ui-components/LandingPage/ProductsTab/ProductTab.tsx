@@ -5,16 +5,17 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function ProductTab() {
-  const [currentTab, setCurrentTab] = useState<string>("Stablecoin infrastructure");
+  const [currentTab, setCurrentTab] = useState<string>("Crypto Trading");
 
   // ✅ Keep tab names stable
   const tabsName = useMemo(
     () => [
-      "Stablecoin infrastructure",
-      "Onramp / offramp",
-      "Digital assets as a Service",
-      "Payments",
-      "OTC",
+      "Crypto Trading",
+      "Decentralized Finance",
+      "Coin Transactions",
+      "Nfts",
+      "Web3 Social Media",
+      "Web3 Consultancy",
     ],
     []
   );
@@ -69,91 +70,108 @@ export default function ProductTab() {
     string,
     { sub: string; href : string ; heading: string; paragraph: string; image: React.ReactNode }
   > = {
-    "Stablecoin infrastructure": {
-      sub: "Stablecoin",
-      href: "/products/stablecoin-infrastructure",
-      heading: "Trusted Stablecoin Framework",
+    "Crypto Trading": {
+      sub: "Crypto Trading",
+      href: "/services/crypto-trading",
+      heading: "Digital Asset Trading",
       paragraph:
-        "Build, scale, and manage stablecoins with high liquidity and transparent compliance frameworks.",
+        "Seamless crypto buying, selling, and storage through secure global exchanges.",
       image: (
         <Image
-          src="/stableCoin.png"
-          alt="Stablecoin infrastructure illustration"
-          width={400}
+          src="/crypto-trading-dashboard.png"
+          alt="crypto-trading-dashboard"
+           width={280}
           height={380}
-          className="object-contain"
+          className="object-contain mt-8"
         />
       ),
     },
-    "Onramp / offramp": {
-      sub: "Onramp/Offramp",
-      href: "/products/onramp-offramp",
-      heading: "Seamless Fiat ↔ Crypto Conversion",
+   
+    "Decentralized Finance": {
+      sub: "Decentralized Finance(DEFI)",
+     href: "/services/defi",
+      heading: "Decentralized Finance Hub",
       paragraph:
-        "Move between fiat and crypto effortlessly. Empower users with easy deposit and withdrawal options.",
+        "Access borderless lending, staking, and trading — powered by secure smart contracts.",
       image: (
         <Image
-          src="/onRamp.png"
-          alt="Onramp offramp illustration"
-          width={300}
-          height={310}
-          className="object-contain"
+          src="/defi-dashboard.png"
+          alt="defi-dashboard"
+           width={280}
+          height={380}
+          className="object-contain mt-8"
         />
       ),
     },
-    "Digital assets as a Service": {
-      sub: "Digital Assets as a Service",
-     href: "/products/daas",
-      heading: "Seamless Crypto Integration with NOVA",
+     "Coin Transactions": {
+      sub: "Coin Transactions",
+      href: "/services/coin-transactions",
+      heading: "Digital Coin Transfers",
       paragraph:
-        "Add trading, rewards, custody, and lending to your app in minutes. Nova APIs handle infrastructure, compliance, and security, so you can focus on growth.",
+        "Fast, verified, and secure crypto transactions with full tracking and wallet integration.",
       image: (
         <Image
-          src="/daas.png"
-          alt="Digital assets illustration"
-          width={550}
-          height={450}
-          className="object-contain"
+          src="/coin-transaction-dashboard.png"
+          alt="coin-transaction-dashboard"
+           width={280}
+          height={380}
+          className="object-contain mt-8"
         />
       ),
     },
-    Payments: {
-      sub: "Payments",
-     href: "/products/payments",
+    "Nfts": {
+      sub: "NFTs",
+     href: "/services/nfts",
 
-      heading: "Frictionless Payments Anywhere",
+      heading: "Creative NFT Ecosystem",
       paragraph:
-        "Accept global payments with low fees and instant settlement. Make every transaction fast and borderless.",
+        "Build, mint, and grow your NFT brand with automated royalties and global exposure.",
       image: (
         <Image
-          src="/payment.png"
-          alt="Payments illustration"
+          src="/nft-service.png"
+          alt="nft"
+          width={500}
+          height={500}
+          className="object-contain mt-8"
+        />
+      ),
+    },
+    "Web3 Social Media": {
+      sub: "Web3 Social Media",
+      href: "/services/web3-social-media",
+      heading: "Decentralized Social Platform",
+      paragraph:
+        "Empower users to earn, post, and connect through blockchain-based social engagement.",
+      image: (
+        <Image
+          src="/web3-social.png"
+          alt="OTC trading illustration"
+          width={550}
+          height={550}
+          className="object-contain"
+        />
+      ),
+    },
+    "Web3 Consultancy": {
+      sub: "Web3 Consultancy",
+      href: "/services/web3-consultancy",
+      heading: "Web3 Strategy & Development",
+      paragraph:
+        "Nova-Crest builds your Web3 journey with tailored blockchain solutions and end-to-end dApp support.",
+      image: (
+        <Image
+          src="/web3-consultancy-service.jpeg"
+          alt="web3-consultancy-service"
           width={380}
           height={350}
-          className="object-contain"
-        />
-      ),
-    },
-    OTC: {
-      sub: "OTC",
-      href: "/products/otc",
-      heading: "Secure OTC Trading",
-      paragraph:
-        "High-volume crypto trading with tight spreads and institutional-grade security for peace of mind.",
-      image: (
-        <Image
-          src="/digital.png"
-          alt="OTC trading illustration"
-          width={350}
-          height={350}
-          className="object-contain"
+          className="object-contain mr-10"
         />
       ),
     },
   };
 
   return (
-    <div className="relative" id="productTab">
+    <div className="relative" id="servicesTab">
       <div className="relative">
         {/* Content Sections */}
         {tabsName.map((tab, index) => {

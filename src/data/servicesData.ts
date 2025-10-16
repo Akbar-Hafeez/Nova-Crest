@@ -90,7 +90,7 @@ export const productsData = [
     slug: "daas",
     title: "Digital Assets as a Service (DaaS)",
     description:
-      "Tokenize, distribute, and manage digital assets — from NFTs to tokenized securities — through one API-powered infrastructure.",
+      "Tokenize, distribute, and manage digital assets  from NFTs to tokenized securities  through one API-powered infrastructure.",
     imageSrc: "/daas-mockup.png",
     featureHeading: "DaaS Highlights",
     features: [
@@ -207,7 +207,7 @@ export const productFaqs = {
       {
         question: "Can I customize the stablecoin’s branding or features?",
         answer:
-          "Yes, Nova Crest allows full customization — from naming and design to smart contract logic and compliance configurations.",
+          "Yes, Nova Crest allows full customization  from naming and design to smart contract logic and compliance configurations.",
       },
       {
         question: "Which blockchains are supported?",
@@ -257,7 +257,7 @@ export const productFaqs = {
       {
         question: "What is Digital Assets as a Service (DaaS)?",
         answer:
-          "It’s Nova Crest’s end-to-end solution for tokenizing, distributing, and managing digital assets — including NFTs, tokens, and securities.",
+          "It’s Nova Crest’s end-to-end solution for tokenizing, distributing, and managing digital assets  including NFTs, tokens, and securities.",
       },
       {
         question: "Which assets can be tokenized?",
@@ -287,7 +287,7 @@ export const productFaqs = {
       {
         question: "What does On-Ramp / Off-Ramp mean?",
         answer:
-          "It enables users to convert between fiat and crypto assets seamlessly — either entering (on-ramp) or exiting (off-ramp) the crypto ecosystem.",
+          "It enables users to convert between fiat and crypto assets seamlessly  either entering (on-ramp) or exiting (off-ramp) the crypto ecosystem.",
       },
       {
         question: "Which payment methods are supported?",
@@ -386,7 +386,7 @@ export const productReviews = {
       logo: "/Partners/metamask.svg",
       company: "MetaMask",
       quote:
-        "Nova Crest’s stablecoin infrastructure gave us full control and transparency over our tokenized reserves — setting new standards for compliant, enterprise-grade deployments.",
+        "Nova Crest’s stablecoin infrastructure gave us full control and transparency over our tokenized reserves  setting new standards for compliant, enterprise-grade deployments.",
       author: "Lorenzo Santos",
       role: "Product Lead, MetaMask",
       image: "/Partners/lorenzo.png",
@@ -395,7 +395,7 @@ export const productReviews = {
       logo: "/Partners/new-visa-logo.webp",
       company: "Visa",
       quote:
-        "Through Nova Crest’s reserve-backed framework, Visa can now facilitate cross-border settlements faster and with on-chain verifiability — a true evolution in payments.",
+        "Through Nova Crest’s reserve-backed framework, Visa can now facilitate cross-border settlements faster and with on-chain verifiability  a true evolution in payments.",
       author: "Yanilsa Gonzalez-Ore",
       role: "VP Payments, Visa",
       image: "/Partners/yanilsa.jpeg",
@@ -428,7 +428,7 @@ export const productReviews = {
       logo: "/Partners/Trust-Wallet-Logo.png",
       company: "Trust Wallet",
       quote:
-        "With Nova Crest’s Digital Assets as a Service, we launched tokenized assets globally — achieving high scalability and compliance without compromising user experience.",
+        "With Nova Crest’s Digital Assets as a Service, we launched tokenized assets globally  achieving high scalability and compliance without compromising user experience.",
       author: "Maria Lopez",
       role: "Blockchain Partnerships, Trust Wallet",
      image: "/Partners/yanilsa.jpeg",
@@ -458,7 +458,7 @@ export const productReviews = {
       logo: "/Partners/sepa.svg",
       company: "SEPA",
       quote:
-        "Partnering with Nova Crest accelerated our digital asset conversion capabilities — enabling near-instant settlements between traditional and blockchain economies.",
+        "Partnering with Nova Crest accelerated our digital asset conversion capabilities  enabling near-instant settlements between traditional and blockchain economies.",
       author: "Isabella Grant",
       role: "Crypto Product Lead, SEPA",
       image: "/Partners/mary-cath.jpeg",

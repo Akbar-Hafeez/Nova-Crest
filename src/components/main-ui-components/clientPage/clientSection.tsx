@@ -159,7 +159,7 @@ export default function ClientsSection(): JSX.Element {
             Empowering a Diverse Network of Financial and Digital Innovators
           </h2>
           <p className="mt-4 md:mt-6 lg:mt-8 text-lg text-color max-w-2xl mx-auto">
-            We empower a diverse network of innovators — from fintechs and trading firms to Web3 startups and global financial institutions — delivering reliable infrastructure tailored to their unique needs.
+            We empower a diverse network of innovators  from fintechs and trading firms to Web3 startups and global financial institutions  delivering reliable infrastructure tailored to their unique needs.
           </p>
         </div>
         {/* Nova Crest network section */}

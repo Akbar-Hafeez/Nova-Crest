@@ -6,7 +6,7 @@ export default function ClientFaqs() {
       {
         question: "What types of businesses can benefit from your platform?",
         answer:
-          "Our platform is designed for a wide range of financial and tech-driven businesses — including trading firms, fintech startups, Web3 companies, currency exchange houses, and developers building financial applications. Each segment gets tools optimized for its operational and compliance needs.",
+          "Our platform is designed for a wide range of financial and tech-driven businesses  including trading firms, fintech startups, Web3 companies, currency exchange houses, and developers building financial applications. Each segment gets tools optimized for its operational and compliance needs.",
       },
       {
         question: "How secure is your infrastructure for handling financial data?",
@@ -16,7 +16,7 @@ export default function ClientFaqs() {
       {
         question: "Can startups and developers easily integrate your APIs?",
         answer:
-          "Absolutely. Our system provides comprehensive REST and WebSocket APIs, developer-friendly sandboxes, and SDKs in TypeScript and Python — making it simple to build, test, and scale quickly.",
+          "Absolutely. Our system provides comprehensive REST and WebSocket APIs, developer-friendly sandboxes, and SDKs in TypeScript and Python  making it simple to build, test, and scale quickly.",
       },
       {
         question: "Do you support global and cross-border transactions?",
@@ -26,7 +26,7 @@ export default function ClientFaqs() {
       {
         question: "How scalable is your infrastructure as we grow?",
         answer:
-          "Our architecture is microservice-based and API-first, allowing effortless scaling from small startups to large financial institutions — ensuring consistent performance, uptime, and regulatory readiness at every stage of growth.",
+          "Our architecture is microservice-based and API-first, allowing effortless scaling from small startups to large financial institutions  ensuring consistent performance, uptime, and regulatory readiness at every stage of growth.",
       },
     ],
   ];

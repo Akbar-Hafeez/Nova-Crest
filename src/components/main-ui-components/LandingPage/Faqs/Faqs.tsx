@@ -20,7 +20,7 @@ export default function FaqPage() {
     [
       {
         question: "Can Nova Crest integrate digital asset services into my existing platform?",
-        answer: "Yes — Nova Crest provides powerful API integrations that allow you to seamlessly embed digital asset services within your existing banking, fintech, or enterprise platforms. Our infrastructure supports secure trading, institutional-grade custody, and lending capabilities, giving you a full crypto toolkit without the complexity of building it in-house. Designed for scalability and compliance, our APIs ensure a smooth, reliable integration process. With Nova Crest, you can expand your offerings and deliver cutting-edge crypto services to your customers with confidence."
+        answer: "Yes  Nova Crest provides powerful API integrations that allow you to seamlessly embed digital asset services within your existing banking, fintech, or enterprise platforms. Our infrastructure supports secure trading, institutional-grade custody, and lending capabilities, giving you a full crypto toolkit without the complexity of building it in-house. Designed for scalability and compliance, our APIs ensure a smooth, reliable integration process. With Nova Crest, you can expand your offerings and deliver cutting-edge crypto services to your customers with confidence."
       },
       {
         question: "What types of businesses does Nova Crest serve?",
@@ -28,7 +28,7 @@ export default function FaqPage() {
       },
       {
         question: "How can my business start working with Nova Crest?",
-        answer: "Getting started with Nova Crest is seamless — simply request a demo or connect with our team to explore how our solutions can power your financial operations."
+        answer: "Getting started with Nova Crest is seamless  simply request a demo or connect with our team to explore how our solutions can power your financial operations."
       }
     ]
   ];

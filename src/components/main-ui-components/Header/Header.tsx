@@ -28,14 +28,19 @@ import {
   FaMoneyBillWave,
   FaChartBar,
   FaChevronRight,
+  FaLightbulb,
+  FaShareAlt,
+  FaImages,
 } from "react-icons/fa";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import { useDialogStore } from "@/store/useDialogStore";
+import { RiStockLine } from "react-icons/ri";
 
 type DropdownItem = {
+  isCategory?: boolean;
   label: string;
-  icon: JSX.Element;
+  icon?: JSX.Element;
   href?: string;
   desc?: string;
 };
@@ -58,92 +63,113 @@ export default function Header() {
      }
 
   const navItems: NavItem[] = [
+ {
+  label: "Nova Services",
+  dropdownColumns: [
+    [
+      {
+        label: "Blockchain Finance",
+        isCategory: true,
+      },
+      {
+        label: "Crypto Trading",
+        href: "/services/crypto-trading",
+        desc: "Smart and secure trading.",
+        icon: <FaChartLine size={14} className="text-[#7f00ff]" />,
+      },
+      {
+        label: "Coin Transactions",
+        href: "/services/coin-transactions",
+        desc: "Fast crypto-fiat transfers.",
+        icon: <FaArrowRightArrowLeft size={14} className="text-[#7f00ff]" />,
+      },
+      {
+        label: "Decentralized Finance (DeFi)",
+        href: "/services/defi",
+        desc: "Lending, staking, and yields.",
+        icon: <FaWallet size={14} className="text-[#7f00ff]" />,
+      },
+    ],
+    [
+      {
+        label: "Web3 Innovation",
+        isCategory: true,
+      },
+      {
+        label: "NFTs (Non-Fungible Tokens)",
+        href: "/services/nfts",
+        desc: "Create and trade NFTs.",
+        icon: <FaImages size={14} className="text-[#7f00ff]" />,
+      },
+      {
+        label: "Web3 Social Media",
+        href: "/services/web3-social-media",
+        desc: "Earn and engage socially.",
+        icon: <FaShareAlt size={14} className="text-[#7f00ff]" />,
+      },
+      {
+        label: "Consultancy in Web3 DApps",
+        href: "/services/web3-consultancy",
+        desc: "Expert Web3 guidance.",
+        icon: <FaLightbulb size={14} className="text-[#7f00ff]" />,
+      },
+    ],
+  ],
+}
+
+
+,
     {
-      label: "Clients",
-      href: "/clients",
+      label: "Customers",
+      href: "/customers",
       dropdownColumns: [
         [
           {
             label: "Financial Institutions",
             icon: <FaLandmark size={14} className="text-[#7f00ff]" />,
-            href: "/clients#financial",
+            href: "/customers#financial",
           },
           {
             label: "E-Commerce Platforms",
             icon: <FaShoppingCart size={14} className="text-[#7f00ff]" />,
-            href: "/clients#ecommerce",
+            href: "/customers#ecommerce",
           },
           {
             label: "Trading Firms",
             icon: <FaChartLine size={14} className="text-[#7f00ff]" />,
-            href: "/clients#trading",
+            href: "/customers#trading",
           },
           {
             label: "Fintechs & Exchanges",
             icon: <FaServer size={14} className="text-[#7f00ff]" />,
-            href: "/clients#fintech",
+            href: "/customers#fintech",
           },
         ],
         [
           {
             label: "Web3 Companies",
             icon: <FaAtom size={14} className="text-[#7f00ff]" />,
-            href: "/clients#web3",
+            href: "/customers#web3",
           },
           {
             label: "Developers",
             icon: <FaCode size={14} className="text-[#7f00ff]" />,
-            href: "/clients#developers",
+            href: "/customers#developers",
           },
           {
             label: "Startups",
             icon: <FaRocket size={14} className="text-[#7f00ff]" />,
-            href: "/clients#startups",
+            href: "/customers#startups",
           },
           {
             label: "Currency Exchange Houses",
             icon: <FaExchangeAlt size={14} className="text-[#7f00ff]" />,
-            href: "/clients#currency",
+            href: "/customers#currency",
           },
         ],
       ],
     },
-    {
-      label: "Products",
-      
-      dropdown: [
-        {
-          label: "Stablecoin Infrastructure",
-           href: "/products/stablecoin-infrastructure",
-          desc: "Deploy, manage, and scale stablecoins securely.",
-          icon: <FaCoins size={14} className="text-[#7f00ff]" />,
-        },
-        {
-          label: "Onramp / Offramp",
-            href: "/products/onramp-offramp",
-          desc: "Enable fiat-crypto conversions effortlessly.",
-          icon: <FaArrowRightArrowLeft size={14} className="text-[#7f00ff]" />,
-        },
-        {
-          label: "Digital Assets as a Service",
-            href: "/products/daas",
-          desc: "Offer secure and compliant digital asset services.",
-          icon: <FaWallet size={14} className="text-[#7f00ff]" />,
-        },
-        {
-          label: "Payments",
-            href: "/products/payments",
-          desc: "Seamless cross-border and blockchain payments.",
-          icon: <FaMoneyBillWave size={14} className="text-[#7f00ff]" />,
-        },
-        {
-          label: "OTC",
-            href: "/products/otc",
-          desc: "Access institutional-grade digital asset liquidity.",
-          icon: <FaChartBar size={14} className="text-[#7f00ff]" />,
-        },
-      ],
-    },
+   
     {
       label: "Developers",
       dropdown: [
@@ -158,7 +184,7 @@ export default function Header() {
       ],
     },
     {
-      label: "Company",
+      label: "About Nova",
       dropdown: [
         {
           label: "About Nova Crest",
@@ -200,13 +226,13 @@ export default function Header() {
       onMouseEnter={() => setOpenDropdown(item.label)}
       onMouseLeave={() => setOpenDropdown(null)}
     >
-      {item.label === "Clients" ? (
-        // ✅ Clients navigates + closes dropdown
+      {item.label === "Customers" ? (
+        // ✅ customers navigates + closes dropdown
         <Link
           href={item.href ?? "#"}
           className="flex items-center gap-1 duration-300 hover:text-[#7f00ff] relative z-50"
           onClick={() => {
-            // close dropdown immediately when navigating to clients
+            // close dropdown immediately when navigating to customers
             setOpenDropdown(null);
           }}
         >
@@ -236,47 +262,29 @@ export default function Header() {
       )}
 
       {/* Dropdown */}
-      {openDropdown === item.label && (
-        <div className="absolute left-0 top-full bg-white backdrop-blur-md rounded-xl shadow-lg py-4 px-4 z-50 animate-fadeIn w-max">
-          {/* Transparent hover bridge */}
-          <div className="absolute -top-3 left-0 w-full h-3 bg-transparent"></div>
+     {openDropdown === item.label && (
+  <div className="absolute left-0 top-full bg-white backdrop-blur-md rounded-xl shadow-lg py-4 px-4 z-50 animate-fadeIn w-max">
+    {/* Transparent hover bridge */}
+    <div className="absolute -top-3 left-0 w-full h-3 bg-transparent"></div>
 
-          {"dropdownColumns" in item ? (
-            <div className="grid grid-cols-2 gap-3">
-              {item.dropdownColumns?.map((col, idx) => (
-                <ul key={idx} className="flex flex-col gap-1">
-                  {col.map((d, i) => (
-                    <li
-                      key={i}
-                      onClick={() => setOpenDropdown(null)}
-                      className="opacity-0 animate-fadeInItem"
-                      style={{ animationDelay: `${i * 0.05}s` }}
-                    >
-                      <Link
-                        href={d.href ?? "#"}
-                        className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition"
-                      >
-                        <span className="flex items-center justify-center bg-gray-100 rounded-md w-9 h-9 shrink-0">
-                          {d.icon}
-                        </span>
-                        <span className="text-gray-800 font-medium">
-                          {d.label}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              ))}
-            </div>
-          ) : (
-            <ul className="flex flex-col gap-2">
-              {item.dropdown?.map((d, idx) => (
-                <li
-                  key={idx}
-                  onClick={() => setOpenDropdown(null)}
-                  className="opacity-0 animate-fadeInItem"
-                  style={{ animationDelay: `${idx * 0.05}s` }}
-                >
+    {"dropdownColumns" in item ? (
+      <div className="grid grid-cols-2 gap-3">
+        {item.dropdownColumns?.map((col, idx) => (
+          <ul key={idx} className="flex flex-col gap-1">
+            {col.map((d, i) => (
+              <li
+                key={i}
+                onClick={() => !d.isCategory && setOpenDropdown(null)}
+                className={`opacity-0 animate-fadeInItem ${
+                  d.isCategory ? "cursor-default" : ""
+                }`}
+                style={{ animationDelay: `${i * 0.05}s` }}
+              >
+                {d.isCategory ? (
+                  <span className="block text-xs uppercase font-semibold primary-color tracking-widest mb-1 mt-2 px-3">
+                    {d.label}
+                  </span>
+                ) : (
                   <Link
                     href={d.href ?? "#"}
                     className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition"
@@ -285,18 +293,48 @@ export default function Header() {
                       {d.icon}
                     </span>
                     <div>
-                      <p>{d.label}</p>
+                      <p className="text-gray-800 font-medium">{d.label}</p>
                       {d.desc && (
                         <p className="text-sm text-gray-500">{d.desc}</p>
                       )}
                     </div>
                   </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )}
+                )}
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
+    ) : (
+      <ul className="flex flex-col gap-2">
+        {item.dropdown?.map((d, idx) => (
+          <li
+            key={idx}
+            onClick={() => setOpenDropdown(null)}
+            className="opacity-0 animate-fadeInItem"
+            style={{ animationDelay: `${idx * 0.05}s` }}
+          >
+            <Link
+              href={d.href ?? "#"}
+              className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition"
+            >
+              <span className="flex items-center justify-center bg-gray-100 rounded-md w-9 h-9 shrink-0">
+                {d.icon}
+              </span>
+              <div>
+                <p>{d.label}</p>
+                {d.desc && (
+                  <p className="text-sm text-gray-500">{d.desc}</p>
+                )}
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+)}
+
     </li>
   ))}
 </ul>
@@ -335,8 +373,8 @@ export default function Header() {
   <nav className="mt-20 flex flex-col gap-4 px-6 font-medium text-lg">
     {navItems.map((item) => (
       <div key={item.label} className="border-b border-gray-200 pb-2">
-        {/* ✅ Clients Label — Clickable + Dropdown Works */}
-        {item.label === "Clients" ? (
+        {/* ✅ customers Label  Clickable + Dropdown Works */}
+        {item.label === "Customers" ? (
           <div
             className="flex justify-between items-center cursor-pointer"
             onClick={() =>
@@ -363,7 +401,7 @@ export default function Header() {
             )}
           </div>
         ) : (
-          // 🚫 Other Labels — Dropdown Only (No Navigation)
+          // 🚫 Other Labels  Dropdown Only (No Navigation)
           <div
             className="flex justify-between items-center cursor-pointer"
             onClick={() =>

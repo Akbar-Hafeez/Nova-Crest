@@ -11,8 +11,8 @@ export default function ProductTab() {
   const tabsName = useMemo(
     () => [
       "Crypto Trading",
-      "Decentralized Finance",
       "Coin Transactions",
+      "Decentralized Finance",
       "Nfts",
       "Web3 Social Media",
       "Web3 Consultancy",

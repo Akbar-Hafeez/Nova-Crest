@@ -94,7 +94,7 @@ export default function Trust() {
             />
           </svg>
           <h3 className="text-xl font-semibold text-gray-900">
-            Born in MENA, built for growth
+            Born in Asia, built for growth
           </h3>
           <p className="mt-2 text-color">
             Tailored for fast-moving markets with local expertise and global standards.

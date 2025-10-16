@@ -152,11 +152,29 @@ export default function ClientsSection(): JSX.Element {
 
   return (
     <section className="bg-white py-20">
+       {/* Background SVG pattern */}
+      <svg
+        className="absolute top-0 left-0 w-full opacity-10 pointer-events-none"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 320"
+      >
+        <path
+          fill="url(#grad)"
+          fillOpacity="1"
+          d="M0,192L80,208C160,224,320,256,480,266.7C640,277,800,267,960,250.7C1120,235,1280,213,1360,202.7L1440,192L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
+        ></path>
+        <defs>
+          <linearGradient id="grad" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stopColor="#7f00ff" />
+            <stop offset="100%" stopColor="#00b4ff" />
+          </linearGradient>
+        </defs>
+      </svg>
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section  Heading*/}
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-extrabold ">
-            Empowering a Diverse Network of Financial and Digital Innovators
+          <h2 className="text-4xl py-5 primary-color md:text-5xl font-extrabold  leading-relaxed">
+            Empowering a Diverse Network of <span className="primary-color">Web3</span> and <span className="primary-color">Blockchain</span> Innovators
           </h2>
           <p className="mt-4 md:mt-6 lg:mt-8 text-lg text-color max-w-2xl mx-auto">
             We empower a diverse network of innovators  from fintechs and trading firms to Web3 startups and global financial institutions  delivering reliable infrastructure tailored to their unique needs.

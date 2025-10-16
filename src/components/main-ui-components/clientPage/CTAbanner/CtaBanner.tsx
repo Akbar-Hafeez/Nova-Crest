@@ -5,7 +5,7 @@ export default function CtaBannerClient() {
   return (
     <div>
      <CtaBannerUtil
-     heading='Your Partner for Scalable Fintech Growth'
+     heading='Scale Seamlessly with Blockchain-Powered Finance'
      button='Talk to Our Team'
      /> 
     </div>

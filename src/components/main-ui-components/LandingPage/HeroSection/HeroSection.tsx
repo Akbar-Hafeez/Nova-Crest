@@ -29,7 +29,7 @@ export default function HeroSection() {
           >{technologiesName[index]}</span>
           </h1>
           <p className="mt-6 paragraph">
-           Join leading companies that trust Nova Crest for global stablecoin payments, seamless fiat payouts and collections, and next-generation embedded crypto services.
+        Nova Crest powers the future of digital finance through advanced crypto, NFTs, and next-generation Web3 innovation solutions.
           </p>
           <div className="mt-8 flex flex-wrap gap-4 ">
             <Button onClick={open} variant="secondary">Get Started</Button>

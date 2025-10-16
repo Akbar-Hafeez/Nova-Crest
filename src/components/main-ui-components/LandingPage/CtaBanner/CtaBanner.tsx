@@ -6,7 +6,7 @@ export default function CtaBanner() {
   return (
     <div>
       <CtaBannerUtil 
-      heading='Powering Trust, Speed, and Stability in Digital Finance'
+      heading='Transforming Financial Systems Through Blockchain Innovation'
       button='Experience Nova Crest'
       />
     </div>

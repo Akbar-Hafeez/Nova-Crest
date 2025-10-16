@@ -173,7 +173,7 @@ export default function ClientsSection(): JSX.Element {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section  Heading*/}
         <div className="text-center mb-20">
-          <h2 className="text-4xl py-5 primary-color md:text-5xl font-extrabold  leading-relaxed">
+          <h2 className="text-4xl lg:py-5 primary-color md:text-5xl font-extrabold  leading-relaxed">
             Empowering a Diverse Network of <span className="primary-color">Web3</span> and <span className="primary-color">Blockchain</span> Innovators
           </h2>
           <p className="mt-4 md:mt-6 lg:mt-8 text-lg text-color max-w-2xl mx-auto">

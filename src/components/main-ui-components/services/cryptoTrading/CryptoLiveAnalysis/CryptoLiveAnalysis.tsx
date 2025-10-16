@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { LineChart, Line, ResponsiveContainer } from "recharts";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const generateChartData = (direction: "down" | "up" = "down") => {
   const points = 40;
@@ -43,7 +44,7 @@ const CryptoLiveAnalysis = () => {
         );
         const data = await res.json();
 
-        const updated = data.slice(0, 7).map((coin: any) => ({
+        const updated = data.slice(0, 7).map((coin:string | any) => ({
           ...coin,
           binanceSymbol:
             coin.symbol.toUpperCase() === "BTC"
@@ -159,13 +160,13 @@ const CryptoLiveAnalysis = () => {
         {/* Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Main Coin Chart */}
-          <div className="bg-[#0c1343] p-6 rounded-md shadow-[0_0_25px_-5px_rgba(127,0,255,0.15)] ">
+          <div className="bg-[#070a1a] p-6 rounded-md shadow-[0_0_25px_-5px_rgba(127,0,255,0.15)] ">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <img
+                <Image
                   src={mainCoin.image}
                   alt={mainCoin.name}
-                  className="w-7 h-7"
+                 width={50} height={40}
                 />
                 <h3 className="text-lg md:text-xl font-semibold text-white">
                   {mainCoin.name} ({mainCoin.symbol.toUpperCase()})
@@ -226,9 +227,9 @@ const CryptoLiveAnalysis = () => {
                 key={i}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
-                className="bg-[#0c1343] rounded-md p-4 flex flex-col items-center justify-center text-center shadow-md hover:shadow-[0_0_20px_-4px_rgba(127,0,255,0.25)]"
+                className="bg-[#070a1a] rounded-md p-4 flex flex-col items-center justify-center text-center shadow-md hover:shadow-[0_0_20px_-4px_rgba(127,0,255,0.25)]"
               >
-                <img src={coin.image} alt={coin.name} className="w-8 h-8 mb-2" />
+                <Image src={coin.image} alt={coin.name} width={40} height={40} className=" mb-2" />
                 <p className="text-sm md:text-base font-semibold text-white">
                   {coin.name}
                 </p>

@@ -1,6 +1,8 @@
+
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import ReactCountryFlag from "react-country-flag";
 import {
   Dialog,
   DialogContent,
@@ -25,9 +27,48 @@ import toast from "react-hot-toast";
 
 export default function GetStartedDialog() {
   const { isOpen, close } = useDialogStore();
-  const handleClick = () => {
-    toast.success("Message sent !")
-  }
+
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+
+  const handleServiceChange = (service: string) => {
+    setSelectedServices((prev) =>
+      prev.includes(service)
+        ? prev.filter((s) => s !== service)
+        : [...prev, service]
+    );
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (selectedServices.length < 1) {
+      toast.error("Please select at least one service.");
+      return;
+    }
+    toast.success("Message sent!");
+    close();
+  };
+
+  const countryOptions = [
+    { iso: "AE", code: "+971" },
+    { iso: "US", code: "+1" },
+    { iso: "GB", code: "+44" },
+    { iso: "AU", code: "+61" },
+    { iso: "PK", code: "+92" },
+    { iso: "IN", code: "+91" },
+    { iso: "SG", code: "+65" },
+    { iso: "MY", code: "+60" },
+    { iso: "JP", code: "+81" },
+    { iso: "DE", code: "+49" },
+  ];
+
+  const services = [
+    "Crypto Trading",
+    "Coin Transactions",
+    "NFTs",
+    "WEB3 Social Media",
+    "Decentralized Finance ",
+    "Consultancy in WEB3 ",
+  ];
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && close()}>
@@ -52,7 +93,7 @@ export default function GetStartedDialog() {
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleClick} className="space-y-4 mt-4">
+        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           {/* Full Name */}
           <div className="grid gap-2">
             <Label htmlFor="name">Full Name</Label>
@@ -72,21 +113,27 @@ export default function GetStartedDialog() {
             </Label>
             <div className="flex gap-2 w-full">
               {/* Country Code Dropdown */}
-              <Select >
+              <Select defaultValue="+971">
                 <SelectTrigger className="w-28">
-                  <SelectValue placeholder="🇦🇪 +971" />
+                  <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="+1">🇺🇸 +1</SelectItem>
-                  <SelectItem value="+44">🇬🇧 +44</SelectItem>
-                  <SelectItem value="+971">🇦🇪 +971</SelectItem>
-                  <SelectItem value="+61">🇦🇺 +61</SelectItem>
-                  <SelectItem value="+92">🇵🇰 +92</SelectItem>
-                  <SelectItem value="+91">🇮🇳 +91</SelectItem>
-                  <SelectItem value="+65">🇸🇬 +65</SelectItem>
-                  <SelectItem value="+60">🇲🇾 +60</SelectItem>
-                  <SelectItem value="+81">🇯🇵 +81</SelectItem>
-                  <SelectItem value="+49">🇩🇪 +49</SelectItem>
+                  {countryOptions.map((c) => (
+                    <SelectItem key={c.code} value={c.code}>
+                      <span className="flex items-center gap-2">
+                        <ReactCountryFlag
+                          countryCode={c.iso}
+                          svg
+                          style={{
+                            width: "1.25em",
+                            height: "1.25em",
+                            borderRadius: "2px",
+                          }}
+                        />
+                        {c.code}
+                      </span>
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
 
@@ -101,25 +148,41 @@ export default function GetStartedDialog() {
             </div>
           </div>
 
+          {/* Services */}
+          <div className="grid gap-3">
+            <Label className="text-sm font-medium">Select Services</Label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {services.map((service) => (
+                <div key={service} className="flex items-center space-x-2">
+                  <Checkbox
+                    id={service}
+                    checked={selectedServices.includes(service)}
+                    onCheckedChange={() => handleServiceChange(service)}
+                  />
+                  <Label htmlFor={service} className="text-sm text-muted-foreground">
+                    {service}
+                  </Label>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Message */}
           <div className="grid gap-2">
             <Label htmlFor="message">Message</Label>
             <Textarea id="message" required placeholder="Your message..." rows={4} />
           </div>
 
-          {/* Checkbox */}
+          {/* Marketing Checkbox */}
           <div className="flex items-start space-x-2">
             <Checkbox id="marketing" />
-            <Label
-              htmlFor="marketing"
-              className="text-sm text-muted-foreground"
-            >
+            <Label htmlFor="marketing" className="text-sm text-muted-foreground">
               I agree to receive updates and marketing emails.
             </Label>
           </div>
 
           {/* Submit Button */}
-          <Button type="submit"  variant="secondary" className="w-full">
+          <Button type="submit" variant="secondary" className="w-full">
             Send Message
           </Button>
         </form>

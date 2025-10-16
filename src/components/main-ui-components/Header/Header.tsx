@@ -214,7 +214,7 @@ export default function Header() {
     <header className="sticky top-0 z-50">
       <div className="bg-gray-200 flex items-center justify-between rounded-lg mt-5 px-7 z-50">
         <Link href="/" className="cursor-pointer">
-          <Image src={"/Logo/logo.png"} alt="Logo" width={93} height={60} />
+          <Image src={"/Logo/logo.png"}  alt="Logo" width={93} height={100} />
         </Link>
 
 {/* Desktop Navigation */}
@@ -371,101 +371,109 @@ export default function Header() {
 
   {/* Navigation */}
   <nav className="mt-20 flex flex-col gap-4 px-6 font-medium text-lg">
-    {navItems.map((item) => (
-      <div key={item.label} className="border-b border-gray-200 pb-2">
-        {/* ✅ customers Label  Clickable + Dropdown Works */}
-        {item.label === "Customers" ? (
-          <div
-            className="flex justify-between items-center cursor-pointer"
-            onClick={() =>
-              setMobileDropdown(
-                mobileDropdown === item.label ? null : item.label
-              )
-            }
+  {navItems.map((item) => (
+    <div key={item.label} className="border-b border-gray-200 pb-2">
+      {/* ✅ Customers Label Clickable + Dropdown Works */}
+      {item.label === "Customers" ? (
+        <div
+          className="flex justify-between items-center cursor-pointer"
+          onClick={() =>
+            setMobileDropdown(
+              mobileDropdown === item.label ? null : item.label
+            )
+          }
+        >
+          <Link
+            href={item.href ?? "#"}
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent dropdown toggle when clicking label
+              setSidebarOpen(false);
+              setMobileDropdown(null);
+            }}
+            className="font-semibold hover:text-[#7f00ff] transition"
           >
-            <Link
-              href={item.href ?? "#"}
-              onClick={(e) => {
-                e.stopPropagation(); // Prevent dropdown toggle when clicking label
-                setSidebarOpen(false);
-                setMobileDropdown(null);
-              }}
-              className="font-semibold hover:text-[#7f00ff] transition"
-            >
-              {item.label}
-            </Link>
-            {mobileDropdown === item.label ? (
-              <FaChevronUp size={14} className="text-[#7f00ff]" />
-            ) : (
-              <FaChevronDown size={14} className="text-[#7f00ff]" />
-            )}
-          </div>
-        ) : (
-          // 🚫 Other Labels  Dropdown Only (No Navigation)
-          <div
-            className="flex justify-between items-center cursor-pointer"
-            onClick={() =>
-              setMobileDropdown(
-                mobileDropdown === item.label ? null : item.label
-              )
-            }
-          >
-            <span className="font-semibold hover:text-[#7f00ff] transition">
-              {item.label}
-            </span>
-            {mobileDropdown === item.label ? (
-              <FaChevronUp size={14} className="text-[#7f00ff]" />
-            ) : (
-              <FaChevronDown size={14} className="text-[#7f00ff]" />
-            )}
-          </div>
-        )}
+            {item.label}
+          </Link>
+          {mobileDropdown === item.label ? (
+            <FaChevronUp size={14} className="text-[#7f00ff]" />
+          ) : (
+            <FaChevronDown size={14} className="text-[#7f00ff]" />
+          )}
+        </div>
+      ) : (
+        // 🚫 Other Labels Dropdown Only (No Navigation)
+        <div
+          className="flex justify-between items-center cursor-pointer"
+          onClick={() =>
+            setMobileDropdown(
+              mobileDropdown === item.label ? null : item.label
+            )
+          }
+        >
+          <span className="font-semibold hover:text-[#7f00ff] transition">
+            {item.label}
+          </span>
+          {mobileDropdown === item.label ? (
+            <FaChevronUp size={14} className="text-[#7f00ff]" />
+          ) : (
+            <FaChevronDown size={14} className="text-[#7f00ff]" />
+          )}
+        </div>
+      )}
 
-        {/* Dropdown Items */}
-        {mobileDropdown === item.label && (
-          <div className="mt-2 animate-fadeIn flex flex-col gap-2">
-            {"dropdownColumns" in item
-              ? item.dropdownColumns?.flat().map((d, idx) => (
-                  <Link
-                    key={idx}
-                    href={d.href ?? "#"}
-                    onClick={() => {
-                      setSidebarOpen(false);
-                      setMobileDropdown(null);
-                    }}
-                    className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition text-base"
-                  >
+      {/* Dropdown Items */}
+      {mobileDropdown === item.label && (
+        <div className="mt-2 animate-fadeIn flex flex-col gap-2">
+          {"dropdownColumns" in item
+            ? item.dropdownColumns?.flat().map((d, idx) => (
+                <Link
+                  key={idx}
+                  href={d.href ?? "#"}
+                  onClick={() => {
+                    setSidebarOpen(false);
+                    setMobileDropdown(null);
+                  }}
+                  className={`flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition text-base ${
+                    d.label === "Blockchain Finance" || d.label === "Web3 Innovation"
+                      ? "text-[#7f00ff] font-semibold mt-2 mb-1 tracking-wide uppercase cursor-default"
+                      : ""
+                  }`}
+                >
+                  {!(d.label === "Blockchain Finance" || d.label === "Web3 Innovation") && (
                     <span className="text-[#7f00ff]">{d.icon}</span>
-                    <span>{d.label}</span>
-                  </Link>
-                ))
-              : item.dropdown?.map((d, idx) => (
-                  <Link
-                    key={idx}
-                    href={d.href ?? "#"}
-                    onClick={() => {
-                      setSidebarOpen(false);
-                      setMobileDropdown(null);
-                    }}
-                    className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition text-base"
-                  >
-                    <span className="text-[#7f00ff]">{d.icon}</span>
-                    <span>{d.label}</span>
-                  </Link>
-                ))}
-          </div>
-        )}
-      </div>
-    ))}
+                  )}
+                  <span>{d.label}</span>
+                </Link>
+              ))
+            : item.dropdown?.map((d, idx) => (
+                <Link
+                  key={idx}
+                  href={d.href ?? "#"}
+                  onClick={() => {
+                    setSidebarOpen(false);
+                    setMobileDropdown(null);
+                  }}
+                  className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition text-base"
+                >
+                  <span className="text-[#7f00ff]">{d.icon}</span>
+                  <span>{d.label}</span>
+                </Link>
+              ))}
+        </div>
+      )}
+    </div>
+  ))}
 
-    {/* CTA Button */}
-    <Button
-      className="my-4 w-full"
-      onClick={handleMobileClick}
-    >
-      Get Started
-    </Button>
-  </nav>
+  {/* CTA Button */}
+  <Button
+    className="my-4 w-full"
+    variant="secondary"
+    onClick={handleMobileClick}
+  >
+    Get Started
+  </Button>
+</nav>
+
 </div>
 
 

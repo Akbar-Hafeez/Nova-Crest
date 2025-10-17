@@ -212,9 +212,10 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50">
-      <div className="bg-gray-200 flex items-center justify-between rounded-lg mt-5 px-7 z-50">
+      <div className="bg-gray-200 flex items-center justify-between rounded-lg mt-5 px-4 md:px-6 z-50 py-1">
         <Link href="/" className="cursor-pointer">
-          <Image src={"/Logo/logo.png"}  alt="Logo" width={93} height={100} />
+          <Image src={"/Logo/logo-mobile.png"} className="block md:hidden"  alt="Logo" width={100} height={50} />
+          <Image src={"/Logo/logomain.png"} className="hidden md:block"  alt="Logo" width={145} height={150} />
         </Link>
 
 {/* Desktop Navigation */}
